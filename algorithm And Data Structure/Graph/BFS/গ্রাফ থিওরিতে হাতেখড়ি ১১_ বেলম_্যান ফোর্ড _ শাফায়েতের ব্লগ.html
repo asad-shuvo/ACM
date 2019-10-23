@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://www.shafaetsplanet.com/planetcoding/ -->
+<html lang="en-US" itemscope="" itemtype="http://schema.org/WebSite" prefix="og: http://ogp.me/ns#" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js-ready"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>গ্রাফ থিওরিতে হাতেখড়ি ১১: বেলম‍্যান ফোর্ড | শাফায়েতের ব্লগ</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.shafaetsplanet.com/planetcoding/xmlrpc.php">
+
+<title>গ্রাফ থিওরিতে হাতেখড়ি ১১: বেলম‍্যান ফোর্ড – শাফায়েতের ব্লগ</title>
+
+
+<!-- Performance scores of this site is tuned by WP Performance Score Booster plugin v1.6 - http://wordpress.org/plugins/wp-performance-score-booster -->
+
+<!-- All in One SEO Pack 2.3.8 by Michael Torbert of Semper Fi Web Design[224,290] -->
+<meta name="description" itemprop="description" content="বেলম‍্যান ফোর্ড গ্রাফে শর্টেস্ট পাথ বের করার একটা অ‍্যালগোরিদম। এই অ‍্যালগোরিদম একটা নোডকে সোর্স ধরে সেখান থেকে সব নোডের সংক্ষিপ্ততম বা শর্টেস্ট পথ বের">
+
+<meta name="keywords" itemprop="keywords" content="গ্রাফ,গ্রাফ থিওরি,নেগেটিভ সাইকেল,বেলম‍্যান ফোর্ড,অ্যালগোরিদম/প্রবলেম সলভিং,প্রোগ্রামিং">
+
+<link rel="canonical" href="http://www.shafaetsplanet.com/planetcoding/?p=2044">
+<meta property="og:title" content="গ্রাফ থিওরিতে হাতেখড়ি ১১: বেলম‍্যান ফোর্ড | শাফায়েতের ব্লগ">
+<meta property="og:type" content="activity">
+<meta property="og:url" content="http://www.shafaetsplanet.com/planetcoding/?p=2044">
+<meta property="og:image" content="http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/Untitled-3.jpg">
+<meta property="og:site_name" content="শাফায়েতের ব্লগ">
+<meta property="og:description" content="বেলম‍্যান ফোর্ড গ্রাফে শর্টেস্ট পাথ বের করার একটা অ‍্যালগোরিদম। এই অ‍্যালগোরিদম একটা নোডকে সোর্স ধরে সেখান থেকে সব নোডের সংক্ষিপ্ততম বা শর্টেস্ট পথ বের করতে পারে। আমরা একদম শুরুতে এই কাজ করার জন‍্য ব্রেডথ ফার্স্ট সার্চ শিখেছি। কিন্তু বিএফএস(BFS) যেহেতু ওয়েটেড গ্রাফে কাজ করে না তাই এরপর আমরা শিখেছি ডায়াক্সট্রা অ‍্যালগোরিদম। এখন বেলম‍্যান ফোর্ড শিখব কারন আগের কোনো অ‍্যালগোরিদমই নেগেটিভ ওয়েট এর এজ আছে এমন গ্রাফে কাজ করে না। আমরা ডায়াক্সট্রা শেখার সময় রিল‍্যাক্সেশন নামের একটা ব‍্যাপার শিখেছিলাম। তোমার যদি মনে না থাকে বা ডায়াক্সট্রা না শিখে থাকো তাহলে আমরা প্রথমে একটু ঝালাই করে নেই আরেকবার। মনে থাকলে পরের অংশটা বাদ দিয়ে সরাসরি এখানে যেতে পার। এজ রিল‍্যাক্সেশন: ধর একটা গ্রাফে সোর্স থেকে প্রতিটা নোডের ডিসটেন্স/কস্ট রাখা হয়েছে $d$ মানে হলো সোর্স থেকে বিভিন্ন এজ পার হয়ে ৩ নম্বর নোড এ আসতে মোট $d$ ডিসটেন্স পার করতে হয়েছে। যদি ডিসটেন্স জানা না থাকে তাহলে ইনফিনিটি অর্থাৎ অনেক বড় একটা মান রেখে দিবো। আর $cost$ তে রাখা আছে $u-v$ এজ এর cost। ধর তুমি বিভিন্ন জায়গা ঘুরে ফার্মগেট থেকে">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="গ্রাফ থিওরিতে হাতেখড়ি ১১: বেলম‍্যান ফোর্ড | শাফায়েতের ব্লগ">
+<meta name="twitter:description" content="বেলম‍্যান ফোর্ড গ্রাফে শর্টেস্ট পাথ বের করার একটা অ‍্যালগোরিদম। এই অ‍্যালগোরিদম একটা নোডকে সোর্স ধরে সেখান থেকে সব নোডের সংক্ষিপ্ততম বা শর্টেস্ট পথ বের করতে পারে। আমরা একদম শুরুতে এই কাজ করার জন‍্য ব্রেডথ ফার্স্ট সার্চ শিখেছি। কিন্তু বিএফএস(BFS) যেহেতু ওয়েটেড গ্রাফে কাজ করে না তাই এরপর আমরা শিখেছি ডায়াক্সট্রা অ‍্যালগোরিদম। এখন বেলম‍্যান ফোর্ড শিখব কারন আগের কোনো অ‍্যালগোরিদমই নেগেটিভ ওয়েট এর এজ আছে এমন গ্রাফে কাজ করে না। আমরা ডায়াক্সট্রা শেখার সময় রিল‍্যাক্সেশন নামের একটা ব‍্যাপার শিখেছিলাম। তোমার যদি মনে না থাকে বা ডায়াক্সট্রা না শিখে থাকো তাহলে আমরা প্রথমে একটু ঝালাই করে নেই আরেকবার। মনে থাকলে পরের অংশটা বাদ দিয়ে সরাসরি এখানে যেতে পার। এজ রিল‍্যাক্সেশন: ধর একটা গ্রাফে সোর্স থেকে প্রতিটা নোডের ডিসটেন্স/কস্ট রাখা হয়েছে $d$ মানে হলো সোর্স থেকে বিভিন্ন এজ পার হয়ে ৩ নম্বর নোড এ আসতে মোট $d$ ডিসটেন্স পার করতে হয়েছে। যদি ডিসটেন্স জানা না থাকে তাহলে ইনফিনিটি অর্থাৎ অনেক বড় একটা মান রেখে দিবো। আর $cost$ তে রাখা আছে $u-v$ এজ এর cost। ধর তুমি বিভিন্ন জায়গা ঘুরে ফার্মগেট থেকে">
+<meta name="twitter:image" content="http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/Untitled-3.jpg">
+<meta itemprop="image" content="http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/Untitled-3.jpg">
+<!-- /all in one seo pack -->
+<link rel="alternate" type="application/rss+xml" title="শাফায়েতের ব্লগ » Feed" href="http://www.shafaetsplanet.com/planetcoding/?feed=rss2">
+<link rel="alternate" type="application/rss+xml" title="শাফায়েতের ব্লগ » Comments Feed" href="http://www.shafaetsplanet.com/planetcoding/?feed=comments-rss2">
+<link rel="alternate" type="application/rss+xml" title="শাফায়েতের ব্লগ » গ্রাফ থিওরিতে হাতেখড়ি ১১: বেলম‍্যান ফোর্ড Comments Feed" href="http://www.shafaetsplanet.com/planetcoding/?feed=rss2&amp;p=2044">
+		
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="github-badge-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/github-badge.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-theme-classic-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/classic.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="apss-font-awesome-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="apss-font-opensans-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="apss-frontend-css-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="bbp-default-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bbpress.css" type="text/css" media="screen">
+<link rel="stylesheet" id="cptch_stylesheet-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/dashicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="cptch_desktop_style-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/desktop_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="accesspress-staple-google-fonts-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="accesspress-staple-responsive-nav-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/responsive-nav.css" type="text/css" media="all">
+<link rel="stylesheet" id="accesspress-staple-animate-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/animate.css" type="text/css" media="all">
+<link rel="stylesheet" id="accesspress-staple-font-awesome-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/font-awesome.min(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="accesspress-staple-style-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="accesspress-staple-responsive-css" href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/responsive.css" type="text/css" media="all">
+<!-- This site uses the Google Analytics by MonsterInsights plugin v5.5.2 - Universal enabled - https://www.monsterinsights.com/ -->
+
+<!-- / Google Analytics by MonsterInsights -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="https://api.w.org/" href="http://www.shafaetsplanet.com/planetcoding/?rest_route=/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.shafaetsplanet.com/planetcoding/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.shafaetsplanet.com/planetcoding/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="ডাটা স্ট্রাকচার: বাইনারি ইনডেক্সড ট্রি" href="http://www.shafaetsplanet.com/planetcoding/?p=1961">
+<link rel="next" title="কোয়ান্টাম কম্পিউটার – ১ (কোয়ান্টাম কম্পিউটার কী?)" href="http://www.shafaetsplanet.com/planetcoding/?p=2130">
+
+<link rel="shortlink" href="http://www.shafaetsplanet.com/planetcoding/?p=2044">
+<link rel="alternate" type="application/json+oembed" href="http://www.shafaetsplanet.com/planetcoding/?rest_route=%2Foembed%2F1.0%2Fembed&amp;url=http%3A%2F%2Fwww.shafaetsplanet.com%2Fplanetcoding%2F%3Fp%3D2044">
+<link rel="alternate" type="text/xml+oembed" href="http://www.shafaetsplanet.com/planetcoding/?rest_route=%2Foembed%2F1.0%2Fembed&amp;url=http%3A%2F%2Fwww.shafaetsplanet.com%2Fplanetcoding%2F%3Fp%3D2044&amp;format=xml">
+<meta property="fb:app_id" content="122751631150479">
+    <style type="text/css" media="screen">
+          div.printfriendly a, div.printfriendly a:link, div.printfriendly a:hover, div.printfriendly a:visited {
+            text-decoration: none;
+            border: none;
+          }
+    </style>
+           <style type="text/css" media="screen">
+          div.printfriendly {
+            margin: 12px 12px 12px 12px;
+          }
+          div.printfriendly a, div.printfriendly a:link, div.printfriendly a:visited {
+            font-size: 14px;
+            color: #6D9F00;
+            vertical-align: bottom;
+          }
+
+          .printfriendly a:hover {
+            cursor: pointer;
+          }
+
+          .printfriendly a img  {
+            border: none;
+            padding:0;
+            margin-right: 6px;
+            display:inline-block;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+          }
+          .printfriendly a span{
+            vertical-align: bottom;
+          }
+          .pf-alignleft {
+            float: left;
+          }
+          .pf-alignright {
+            float: right;
+          }
+          div.pf-aligncenter {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+          }
+        </style>
+        <style type="text/css" media="print">
+          .printfriendly {
+            display: none;
+          }
+        </style>
+<style type="text/css" media="all"></style>
+
+	<!-- Clean Archives Reloaded v3.2.0 | http://www.viper007bond.com/wordpress-plugins/clean-archives-reloaded/ -->
+	<style type="text/css">.car-collapse .car-yearmonth { cursor: s-resize; } </style>
+	
+
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.0') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style><style type="text/css">body, body * { z-index: 0 !important; }html, body {overflow: hidden !important;height: 100% !important;margin: 0 !important;position: static !important;}</style><meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/fuckadblock.js.download"></script></head>
+
+<body class="single single-post postid-2044 single-format-standard fullwidth header-white right-sidebar"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" class=" hidden-originally" style="display: none;"></div>
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+
+
+<div id="page" class="hfeed site">
+    <div id="outer-wrap">
+        <div id="inner-wrap">            
+                        
+            <header id="masthead" class="site-header  no-classic" role="banner">
+                
+                            <div class="header-social">
+                    <div class="ak-container">
+                    <div class="ak_header_social">
+                        	<div class="social-icons">
+		
+				<a href="https://twitter.com/shafaet90" class="twitter" data-title="Twitter" target="_blank"><i class="fa fa-twitter"></i><span></span></a>
+		
+		
+		
+		
+				<a href="https://www.linkedin.com/in/shafaetcsedu" class="linkedin" data-title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i><span></span></a>
+		
+		
+		
+		
+				
+		
+		
+				<a href="http://github.com/Shafaet" class="github" data-title="github" target="_blank"><i class="fa fa-github"></i><span></span></a>
+		
+				
+		    </div>
+                    </div> 
+                    </div>
+                </div>
+                            
+                <div class="ak-container" id="main-header">
+                    <div class="site-branding logo-left">
+                        <a href="http://www.shafaetsplanet.com/planetcoding/" rel="প্রথম পাতা"> 
+                                                       <h1>শাফায়েতের ব্লগ</h1>
+                            <div class="tagline">প্রোগ্রামিং ও অ্যালগরিদম টিউটোরিয়াল</div>
+                                                    </a>
+                    </div>
+                    <div class="menu-wrap ">
+                                    
+                        <nav id="site-navigation" class="main-navigation" role="navigation">
+                            <button class="menu-toggle hidden-originally">Primary Menu</button>
+                            <div class="clearfix"> </div>
+                                <div class="staple-menu" style="line-height: 80px;"><ul><li><a href="http://www.shafaetsplanet.com/planetcoding/">Home</a></li><li class="page_item page-item-2804"><a href="http://www.shafaetsplanet.com/planetcoding/?page_id=2804">অ্যালগরিদম নিয়ে যত লেখা!</a></li><li class="page_item page-item-2"><a href="http://www.shafaetsplanet.com/planetcoding/?page_id=2">আমার সম্পর্কে…</a></li></ul></div>
+  
+                        </nav><!-- #site-navigation -->
+                          
+                    </div>
+
+                    <div class="responsive-header hidden-originally">
+                        <a class="nav-btn" id="nav-open-btn" href="http://www.shafaetsplanet.com/planetcoding/#nav">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        </a>
+                    </div>   
+                </div>
+ 
+            </header><!-- #masthead -->
+
+            <nav id="nav" class=" hidden-originally">
+                <div class="block">
+                    <div class="menu-responsive-header-container">
+                        <div class="staple-menu" style="line-height: 80px;"><ul><li><a href="http://www.shafaetsplanet.com/planetcoding/">Home</a></li><li class="page_item page-item-2804"><a href="http://www.shafaetsplanet.com/planetcoding/?page_id=2804">অ্যালগরিদম নিয়ে যত লেখা!</a></li><li class="page_item page-item-2"><a href="http://www.shafaetsplanet.com/planetcoding/?page_id=2">আমার সম্পর্কে…</a></li></ul></div>
+  
+                    </div>
+                    <a class="close-btn hidden-originally" id="nav-close-btn" href="http://www.shafaetsplanet.com/planetcoding/#top"><i class="fa fa-close"> </i> </a>
+                </div>
+            </nav><!-- #site-navigation -->
+
+                        <div id="content" class="site-content">
+            
+                <div class="ak-container">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		                                  
+			
+<article id="post-2044" class="post-2044 post type-post status-publish format-standard hentry category-contest category-programming tag-89 tag-26 tag-116 tag-115">
+	<header class="entry-header">
+		<h1 class="main-title"><span>গ্রাফ থিওরিতে হাতেখড়ি ১১: বেলম‍্যান ফোর্ড</span></h1>		<div class="entry-meta">
+			<span class="posted-on"><a href="http://www.shafaetsplanet.com/planetcoding/?p=2044" rel="bookmark"><time class="entry-date published" datetime="২০১৪-১০-১৭T১২:১৭:১৩+০০:০০">অক্টোবর ১৭, ২০১৪</time><time class="updated hidden-originally" datetime="2016-08-15T16:46:38+00:00">August 15, 2016</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://www.shafaetsplanet.com/planetcoding/?author=1">শাফায়েত</a></span></span>		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+        		<div class="apss-social-share apss-theme-4 clearfix">
+
+
+				<div class="apss-facebook apss-single-icon">
+					<a rel="nofollow" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.shafaetsplanet.com/planetcoding/?p=2044">
+						<div class="apss-icon-block clearfix">
+							<i class="fa fa-facebook"></i>
+							<span class="apss-social-text hidden-originally">Share on Facebook</span>
+							<span class="apss-share hidden-originally">Share</span>
+						</div>
+											</a>
+				</div>
+								<div class="apss-twitter apss-single-icon">
+					<a rel="nofollow" title="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text=%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AB%20%E0%A6%A5%E0%A6%BF%E0%A6%93%E0%A6%B0%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%B9%E0%A6%BE%E0%A6%A4%E0%A7%87%E0%A6%96%E0%A7%9C%E0%A6%BF%20%E0%A7%A7%E0%A7%A7%3A%20%E0%A6%AC%E0%A7%87%E0%A6%B2%E0%A6%AE%E2%80%8D%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%20%E0%A6%AB%E0%A7%87%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%A1&amp;url=http%3A%2F%2Fwww.shafaetsplanet.com%2Fplanetcoding%2F%3Fp%3D2044&amp;">
+						<div class="apss-icon-block clearfix">
+							<i class="fa fa-twitter"></i>
+							<span class="apss-social-text hidden-originally">Share on Twitter</span><span class="apss-share hidden-originally">Tweet</span>
+						</div>
+											</a>
+				</div>
+								<div class="apss-google-plus apss-single-icon">
+					<a rel="nofollow" title="Share on Google Plus" target="_blank" href="https://plus.google.com/share?url=http://www.shafaetsplanet.com/planetcoding/?p=2044">
+						<div class="apss-icon-block clearfix">
+							<i class="fa fa-google-plus"></i>
+							<span class="apss-social-text hidden-originally">Share on Google Plus</span>
+							<span class="apss-share hidden-originally">Share</span>
+						</div>
+											</a>
+				</div>
+				
+				<div class="apss-linkedin apss-single-icon">
+					<a rel="nofollow" title="Share on LinkedIn" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;title=%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AB%20%E0%A6%A5%E0%A6%BF%E0%A6%93%E0%A6%B0%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%B9%E0%A6%BE%E0%A6%A4%E0%A7%87%E0%A6%96%E0%A7%9C%E0%A6%BF%20%E0%A7%A7%E0%A7%A7%3A%20%E0%A6%AC%E0%A7%87%E0%A6%B2%E0%A6%AE%E2%80%8D%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%20%E0%A6%AB%E0%A7%87%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%A1&amp;url=http://www.shafaetsplanet.com/planetcoding/?p=2044&amp;summary=%E0%A6%AC%E0%A7%87%E0%A6%B2%E0%A6%AE%E2%80%8D%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%20%E0%A6%AB%E0%A7%87%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%A1%20%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AB%E0%A7%87%20%E0%A6%B6%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%20%E0%A6%AA%E0%A6%BE%E0%A6%A5...">
+						<div class="apss-icon-block clearfix"><i class="fa fa-linkedin"></i>
+							<span class="apss-social-text hidden-originally">Share on LinkedIn</span>
+							<span class="apss-share hidden-originally">Share</span>
+						</div>
+											</a>
+				</div>
+				</div><div class="pf-content"><p>বেলম‍্যান ফোর্ড গ্রাফে শর্টেস্ট পাথ বের করার একটা অ‍্যালগোরিদম। এই অ‍্যালগোরিদম একটা নোডকে সোর্স ধরে সেখান থেকে সব নোডের সংক্ষিপ্ততম বা শর্টেস্ট পথ বের করতে পারে। আমরা একদম শুরুতে এই কাজ করার জন‍্য ব্রেডথ ফার্স্ট সার্চ শিখেছি। কিন্তু <a href="http://www.shafaetsplanet.com/planetcoding/?p=604">বিএফএস(BFS)</a> যেহেতু ওয়েটেড গ্রাফে কাজ করে না তাই এরপর আমরা শিখেছি ডায়াক্সট্রা অ‍্যালগোরিদম। এখন বেলম‍্যান ফোর্ড শিখব কারন আগের কোনো অ‍্যালগোরিদমই নেগেটিভ ওয়েট এর এজ আছে এমন গ্রাফে কাজ করে না।</p>
+<p>আমরা <a href="http://www.shafaetsplanet.com/planetcoding/?p=1500">ডায়াক্সট্রা</a> শেখার সময় রিল‍্যাক্সেশন নামের একটা ব‍্যাপার শিখেছিলাম। তোমার যদি মনে না থাকে বা ডায়াক্সট্রা না শিখে থাকো তাহলে আমরা প্রথমে একটু ঝালাই করে নেই আরেকবার। মনে থাকলে পরের অংশটা বাদ দিয়ে সরাসরি <a href="http://www.shafaetsplanet.com/planetcoding/#bellman">এখানে যেতে পার</a>।</p>
+<p><strong>এজ রিল‍্যাক্সেশন:</strong></p>
+<p>ধর একটা গ্রাফে সোর্স থেকে প্রতিটা নোডের ডিসটেন্স/কস্ট রাখা হয়েছে <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 1.347em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.078em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1000.97em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-4" style="font-family: MathJax_Main;">[</span><span class="mo" id="MathJax-Span-5" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mo stretchy="false">]</mo></math></span></span> অ্যারেতে। যেমন <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-6" style="width: 1.938em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.562em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1001.45em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-7"><span class="mi" id="MathJax-Span-8" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-9" style="font-family: MathJax_Main;">[</span><span class="mn" id="MathJax-Span-10" style="font-family: MathJax_Main;">3</span><span class="mo" id="MathJax-Span-11" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mn>3</mn><mo stretchy="false">]</mo></math></span></span> মানে হলো সোর্স থেকে বিভিন্ন এজ পার হয়ে ৩ নম্বর নোড এ আসতে মোট <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-12" style="width: 1.938em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.562em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1001.45em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-13"><span class="mi" id="MathJax-Span-14" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-15" style="font-family: MathJax_Main;">[</span><span class="mn" id="MathJax-Span-16" style="font-family: MathJax_Main;">3</span><span class="mo" id="MathJax-Span-17" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mn>3</mn><mo stretchy="false">]</mo></math></span></span> ডিসটেন্স পার করতে হয়েছে। যদি ডিসটেন্স জানা না থাকে তাহলে ইনফিনিটি অর্থাৎ অনেক বড় একটা মান রেখে দিবো। আর <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-18" style="width: 4.895em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.927em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1003.82em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-19"><span class="mi" id="MathJax-Span-20" style="font-family: MathJax_Math-italic;">c</span><span class="mi" id="MathJax-Span-21" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-22" style="font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-23" style="font-family: MathJax_Math-italic;">t</span><span class="mo" id="MathJax-Span-24" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-25" style="font-family: MathJax_Math-italic;">u</span><span class="mo" id="MathJax-Span-26" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-27" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-28" style="font-family: MathJax_Math-italic;">v</span><span class="mo" id="MathJax-Span-29" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mo stretchy="false">[</mo><mi>u</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>v</mi><mo stretchy="false">]</mo></math></span></span> তে রাখা আছে <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-30" style="width: 2.798em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.261em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.616em 1002.26em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-31"><span class="mi" id="MathJax-Span-32" style="font-family: MathJax_Math-italic;">u</span><span class="mo" id="MathJax-Span-33" style="font-family: MathJax_Main; padding-left: 0.218em;">−</span><span class="mi" id="MathJax-Span-34" style="font-family: MathJax_Math-italic; padding-left: 0.218em;">v</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 0.937em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>u</mi><mo>−</mo><mi>v</mi></math></span></span> এজ এর cost।</p>
+<p>ধর তুমি বিভিন্ন জায়গা ঘুরে ফার্মগেট থেকে টিএসসি তে গেলে ১০ মিনিটে, আবার ফার্মগেট থেকে কার্জন হলে গেলে ২৫ মিনিটে। তাহলে ফার্মগেটকে সোর্স ধরে আমরা বলতে পারি:</p>
+<blockquote><p>d[টিএসসি] = ১০, d[কার্জন হল] = ২৫</p></blockquote>
+<p>এখন তুমি দেখলে টিএসসি থেকে ৭ মিনিটে কার্জনে চলে যাওয়া যায়,</p>
+<blockquote><p>cost[টিএসসি][কার্জন হল] = ৭</p></blockquote>
+<p>তাহলে তুমি ২৫ মিনিটের জায়গায় মাত্র ১০ + ৭ = ১৭ মিনিটে কার্জ নহলে যেতে পারবে। যেহেতু তুমি দেখেছো:</p>
+<blockquote><p>d[টিএসসি]+cost[টিএসসি][কার্জন] &lt; d[কার্জন হল]</p></blockquote>
+<p>তাই তুমি এই নতুন রাস্তা দিয়ে কার্জন হলে গিয়ে d[কার্জন হল] = d[টিএসসি] + cost[টিএসসি][কার্জন হল] বানিয়ে দিতেই পারো!!</p>
+<p><a href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/Untitled-3.jpg"><img class="aligncenter size-full wp-image-2076" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/Untitled-3.jpg" alt="Untitled-3" width="280" height="96"></a></p>
+<p>&nbsp;</p>
+<p>উপরের ছবিটা সেটাই বলছে। আমরা <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-35" style="width: 0.755em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.594em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.777em 1000.59em 2.53em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-36"><span class="mi" id="MathJax-Span-37" style="font-family: MathJax_Math-italic;">u</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.67em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>u</mi></math></span></span> থেকে <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-7-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-38" style="width: 0.594em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.487em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.777em 1000.49em 2.53em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-39"><span class="mi" id="MathJax-Span-40" style="font-family: MathJax_Math-italic;">v</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.67em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>v</mi></math></span></span> তে যাবো যদি <strong>d[u]+cost[u][v] &lt; d[v]</strong> হয়। আর <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-8-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-41" style="width: 1.938em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.562em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1001.45em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-42"><span class="mi" id="MathJax-Span-43" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-44" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-45" style="font-family: MathJax_Math-italic;">v</span><span class="mo" id="MathJax-Span-46" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mi>v</mi><mo stretchy="false">]</mo></math></span></span> কে আপডেট করে <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-9-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-47" style="width: 11.938em; display: inline-block;"><span style="display: inline-block; position: relative; width: 9.626em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1009.52em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-48"><span class="mi" id="MathJax-Span-49" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-50" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-51" style="font-family: MathJax_Math-italic;">v</span><span class="mo" id="MathJax-Span-52" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-53" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mi" id="MathJax-Span-54" style="font-family: MathJax_Math-italic; padding-left: 0.272em;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-55" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-56" style="font-family: MathJax_Math-italic;">u</span><span class="mo" id="MathJax-Span-57" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-58" style="font-family: MathJax_Main; padding-left: 0.218em;">+</span><span class="mi" id="MathJax-Span-59" style="font-family: MathJax_Math-italic; padding-left: 0.218em;">c</span><span class="mi" id="MathJax-Span-60" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-61" style="font-family: MathJax_Math-italic;">s</span><span class="mi" id="MathJax-Span-62" style="font-family: MathJax_Math-italic;">t</span><span class="mo" id="MathJax-Span-63" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-64" style="font-family: MathJax_Math-italic;">u</span><span class="mo" id="MathJax-Span-65" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-66" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-67" style="font-family: MathJax_Math-italic;">v</span><span class="mo" id="MathJax-Span-68" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mi>v</mi><mo stretchy="false">]</mo><mo>=</mo><mi>d</mi><mo stretchy="false">[</mo><mi>u</mi><mo stretchy="false">]</mo><mo>+</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mo stretchy="false">[</mo><mi>u</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>v</mi><mo stretchy="false">]</mo></math></span></span> বানিয়ে দিবো। ভবিষ্যতে যদি কার্জনহলে অন্য রাস্তা দিয়ে আরো কম সময়ে যেতে পারি তখন সেই রাস্তা এভাবে কম্পেয়ার করে আপডেট করি দিবো। ব্যাপারটা অনেকটা এরকম:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5891bcda4d226645603115" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar hidden-originally" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed hidden-originally" title="Toggle Line Numbers" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button hidden-originally" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">C++</span></div></div>
+			<div class="crayon-info hidden-originally" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="mouseover" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">if(d[u]+cost[u][v] &lt; d[v])
+d[v] = d[u] + cost[u][v];</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5891bcda4d226645603115-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d226645603115-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5891bcda4d226645603115-1"><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">d</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-o">+</span><span class="crayon-v">cost</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-h"> </span><span class="crayon-v">d</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d226645603115-2"><span class="crayon-v">d</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">d</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">cost</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0017 seconds] -->
+<p></p>
+<p>এটাই হলো এজ রিল‍্যাক্সেশন। এখন আমরা বেলম‍্যান ফোর্ড শেখার জন‍্য তৈরি।</p>
+<p id="bellman"><strong>বেলম‍্যান ফোর্ড</strong></p>
+<p>নিচের গ্রাফে আমরা ১ থেকে শুরু করে প্রতিটা নোডে যাবার শর্টেস্ট পাথ বের করতে চাই:<br>
+<a href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell1.jpg"><img class="aligncenter size-full wp-image-2050" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell1.jpg" alt="bell1" width="443" height="208" srcset="http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell1.jpg 443w, http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell1-300x140.jpg 300w" sizes="(max-width: 443px) 100vw, 443px"></a></p>
+<p>&nbsp;</p>
+<p>শুরুতে <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-10-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-69" style="width: 4.196em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.39em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1003.34em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-70"><span class="mi" id="MathJax-Span-71" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-72" style="font-family: MathJax_Main;">[</span><span class="mn" id="MathJax-Span-73" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-74" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-75" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-76" style="font-family: MathJax_Main; padding-left: 0.272em;">0</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mn>1</mn><mo stretchy="false">]</mo><mo>=</mo><mn>0</mn></math></span></span> কারণ ১ হলো সোর্স। বাকিসবগুলোতে ইনফিনিটি রেখেছি কারণ আমরা এখনও জানিনা শর্টেস্ট পাথের কস্ট কত।</p>
+<p>তুমি এজ রিল‍্যাক্স কিভাবে করতে হয় এরই মধ‍্যে শিখে গেছ। এখন কাজ হলো সবগুলো এজকে একবার করে রিল‍্যাক্স করা, <strong>যেকোন অর্ডারে। একবার ‘গ্রাফ রিল‍্যাক্স’ করার মানে হল গ্রাফটার সবগুলো এজকে একবার করে রিল‍্যাক্স করা। </strong>আমি নিচের অর্ডারে রিল‍্যাক্স করতে চাই,</p>
+<table border="1">
+<tbody>
+<tr style="background: grey;">
+<td style="text-align: center;" width="48">Serial</td>
+<td style="text-align: center;" width="48">1</td>
+<td style="text-align: center;" width="48">2</td>
+<td style="text-align: center;" width="48">3</td>
+<td style="text-align: center;" width="48">4</td>
+<td style="text-align: center;" width="48">5</td>
+<td style="text-align: center;" width="48">6</td>
+</tr>
+<tr>
+<td style="text-align: center;" width="48">Edge</td>
+<td style="text-align: center;" width="48">4 -&gt; 5</td>
+<td style="text-align: center;" width="48">3&nbsp;-&gt; 4</td>
+<td style="text-align: center;" width="48">1&nbsp;-&gt; 3</td>
+<td style="text-align: center;" width="48">1&nbsp;-&gt; 4</td>
+<td style="text-align: center;" width="48">4 -&gt; 6</td>
+<td style="text-align: center;" width="48">2 -&gt; 3</td>
+</tr>
+</tbody>
+</table>
+<p>তুমি চাইলে অন‍্য যেকোনো অর্ডারেও এজগুলো নিতে পারতে। এখন চিন্তা কর এজগুলোকে একবার রিল‍্যাক্স করলে আমরা d[] অ‍্যারেতে কি পাব? <strong>সোর্স থেকে শুরু করে সর্বোচ্চ ১টা এজ ব‍্যবহার করে অন‍্যান‍্য নোডে যাবার শর্টেস্ট পাথের কস্ট আমরা পেয়ে যাব।</strong> উপরের ছবিতে রিল‍্যাক্স করার পর d[] এর মানগুলো আপডেট করে দাও। করার পর ছবিটা নিচের মত হবার কথা:</p>
+<p>&nbsp;</p>
+<p><a href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell2.jpg"><img class="aligncenter size-full wp-image-2063" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell2.jpg" alt="bell2" width="443" height="208" srcset="http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell2.jpg 443w, http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell2-300x140.jpg 300w" sizes="(max-width: 443px) 100vw, 443px"></a></p>
+<p>এজ রিল‍্যাক্স করার সময় কিছু নোড এর কস্ট আপডেট করতে পারি নি কারণ <strong>d[u]+cost[u][v] &lt; d[v]</strong> শর্তটা পূরণ করে নি। বাকি এজগুলো আপডেট করার পর <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-11-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-77" style="width: 1.347em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.078em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1000.97em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-78"><span class="mi" id="MathJax-Span-79" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-80" style="font-family: MathJax_Main;">[</span><span class="mo" id="MathJax-Span-81" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mo stretchy="false">]</mo></math></span></span> অ‍্যারের এর মান উপরের ছবির মত পেয়েছি। ১ নম্বর নোড থেকে শুরু করে সর্বোচ্চ একটি এজ ব‍্যবহার করে সব নোডে যাবার শর্টেস্ট পাথ এখন আমরা জানি!</p>
+<p>এখন সর্বোচ্চ ২টা এজ ব‍্যবহার করে সব নোডে যাবার শর্টেস্ট পাথের cost বের করতে আরেকবার রিল‍্যাক্স করে ফেলি! আবারো যেকোন অর্ডারে করা যাবে, তবে প্রথমে যে অর্ডারে করেছি সেভাবেই প্রতিবার করা কোড লেখার সময় সুবিধাজনক।</p>
+<p><a href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell3.jpg"><img class="aligncenter size-full wp-image-2064" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell3.jpg" alt="bell3" width="443" height="208" srcset="http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell3.jpg 443w, http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell3-300x140.jpg 300w" sizes="(max-width: 443px) 100vw, 443px"></a></p>
+<p>&nbsp;</p>
+<p>একটা ব‍্যাপার লক্ষ‍্য কর, ১ থেকে ৬ তে যাবার শর্টেস্ট পথে ৩ টা এজ আছে (১-&gt;৩, ৩-&gt;৪, ৪-&gt;৬) এবং পথের দৈর্ঘ‍্য ২+১+৫=৮। মাত্র ২বার রিল‍্যাক্স করলেও আমরা এখনই d[6] তে ৮ পেয়ে গেছি, অথচ আমাদের এখন সর্বোচ্চ ২টা এজ ব‍্যবহার করে শর্টেস্ট পাথের cost পাবার কথা। এটা নির্ভর করে তুমি কোন অর্ডারে এজ রিল‍্যাক্স করেছ তার উপর। সে কারণে ৫ এ যাবার শর্টেস্ট পাথ ১০ হলেও d[5] এ এখনো ১০ পাইনি। <strong>X বার ‘গ্রাফ রিল‍্যাক্স’ করলে সর্বোচ্চ X টা এজ ব‍্যবহার করে সোর্স প্রতিটা নোডে যাবার শর্টেস্ট পাথ তুমি নিশ্চিত ভাবে পাবে। X এর থেকে বেশি এজের ব‍্যাবহার করে প্রতিটা নোডে যাবার শর্টেস্ট পাথ তুমি X বার গ্রাফ রিল‍্যাক্সের পর পেতেও পার, নাও পেতে পার, সেটা এজ এর অর্ডারের উপর নির্ভর করে।<br>
+</strong></p>
+<p>এখন ৩য় বারের মত রিল‍্যাক্স করি:</p>
+<p><a href="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell41.jpg"><img class="aligncenter size-full wp-image-2066" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bell41.jpg" alt="bell4" width="443" height="208" srcset="http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell41.jpg 443w, http://www.shafaetsplanet.com/planetcoding/wp-content/uploads/2014/10/bell41-300x140.jpg 300w" sizes="(max-width: 443px) 100vw, 443px"></a>এবার শুধু মাত্র ৫ নম্বর নোড আপডেট হবে।</p>
+<p>এরপরে আমরা আর যতই আপডেট করি, <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-12-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-82" style="width: 1.347em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.078em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1000.97em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-83"><span class="mi" id="MathJax-Span-84" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-85" style="font-family: MathJax_Main;">[</span><span class="mo" id="MathJax-Span-86" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mo stretchy="false">[</mo><mo stretchy="false">]</mo></math></span></span> অ‍্যারেতে কোনো পরিবর্তন হবে না, আমরা ১ থেকে প্রতিটা নোডে যাবার শর্টেস্ট পাথ পেয়ে গিয়েছি।</p>
+<p>এখন স্বাভাবিকভাবেই প্রশ্ন আসবে যে রিল‍্যাক্স কয়বার করতে হবে? গ্রাফে যদি নোড n টা থাকে তাহলে এক নোড থেকে অন‍্য নোডে যেতে সর্বোচ্চ <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-13-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-87" style="width: 2.906em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.315em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1002.26em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-88"><span class="mi" id="MathJax-Span-89" style="font-family: MathJax_Math-italic;">n</span><span class="mo" id="MathJax-Span-90" style="font-family: MathJax_Main; padding-left: 0.218em;">−</span><span class="mn" id="MathJax-Span-91" style="font-family: MathJax_Main; padding-left: 0.218em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 1.07em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>−</mo><mn>1</mn></math></span></span> টা এজ ব‍্যবহার করতে হবে। তারমানে কোনো নোড সর্বোচ্চ <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-14-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-92" style="width: 2.906em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.315em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1002.26em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-93"><span class="mi" id="MathJax-Span-94" style="font-family: MathJax_Math-italic;">n</span><span class="mo" id="MathJax-Span-95" style="font-family: MathJax_Main; padding-left: 0.218em;">−</span><span class="mn" id="MathJax-Span-96" style="font-family: MathJax_Main; padding-left: 0.218em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 1.07em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>−</mo><mn>1</mn></math></span></span> বার আপডেট হতে পারে। তাই রিল‍্যাক্স করার লুপটাও চালাতে হবে <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-15-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-97" style="width: 2.906em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.315em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1002.26em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-98"><span class="mi" id="MathJax-Span-99" style="font-family: MathJax_Math-italic;">n</span><span class="mo" id="MathJax-Span-100" style="font-family: MathJax_Main; padding-left: 0.218em;">−</span><span class="mn" id="MathJax-Span-101" style="font-family: MathJax_Main; padding-left: 0.218em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 1.07em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>−</mo><mn>1</mn></math></span></span> বার। তবে আমরা যেরকম উপরের গ্রাফে দেখেছি ৩বারের পরেই আর কোন নোড আপডেট করা যাচ্ছে না, সেরকম হলে আর নতুন করে রিল‍্যাক্স করার দরকার নাই।</p>
+<p>এখন নিচের মাত্র ৩নোডের গ্রাফটায় বেলম‍্যান ফোর্ড অ‍্যালগোরিদম চালাও, অর্থাৎ যতক্ষণ কোন নোড আপডেট করা যায় ততক্ষণ পুরো গ্রাফটা রিল‍্যাক্স কর:</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shafaetsplanet.com/planetcoding/?attachment_id=2769" rel="attachment wp-att-2769"><img class="aligncenter size-full wp-image-2769" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bellman3.png" alt="bellman3" width="225" height="165"></a></p>
+<table border="1">
+<tbody>
+<tr style="background: grey;">
+<td style="text-align: center;" width="48">Serial</td>
+<td style="text-align: center;" width="48">1</td>
+<td style="text-align: center;" width="48">2</td>
+<td style="text-align: center;" width="48">3</td>
+</tr>
+<tr>
+<td style="text-align: center;" width="48">Edge</td>
+<td style="text-align: center;" width="48">2&nbsp;-&gt; 3</td>
+<td style="text-align: center;" width="48">1&nbsp;-&gt; 2</td>
+<td style="text-align: center;" width="48">3&nbsp;-&gt; 1</td>
+</tr>
+</tbody>
+</table>
+<p>প্রথমবার রিল‍্যাক্স করার পর পাব:</p>
+<p><a href="http://www.shafaetsplanet.com/planetcoding/?attachment_id=2770" rel="attachment wp-att-2770"><img class="aligncenter size-full wp-image-2770" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bellman31.png" alt="bellman3(1)" width="225" height="165"></a></p>
+<p>২য়বার করার পর:</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shafaetsplanet.com/planetcoding/?attachment_id=2771" rel="attachment wp-att-2771"><img class="aligncenter size-full wp-image-2771" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bellman36.png" alt="bellman3(6)" width="215" height="165"></a></p>
+<p>৩ নোডের গ্রাফে সোর্স থেকে কোনো নোডে শর্টেস্ট যেতে ২টার বেশি এজ লাগবে না, ৩য় বার রিল‍্যাক্স করার চেষ্টা করলে কোনো নোড আপডেট হবার কথা না। কিন্তু এই গ্রাফে আপডেট হচ্ছে:</p>
+<p><a href="http://www.shafaetsplanet.com/planetcoding/?attachment_id=2772" rel="attachment wp-att-2772"><img class="aligncenter size-full wp-image-2772" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bellman33.png" alt="bellman3(3)" width="215" height="165"></a></p>
+<p>এটা হচ্ছে কারণ <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-16-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mo&gt;&amp;gt;&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mo&gt;&amp;gt;&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mo&gt;&amp;gt;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-102" style="width: 10.272em; display: inline-block;"><span style="display: inline-block; position: relative; width: 8.282em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1008.23em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-103"><span class="mn" id="MathJax-Span-104" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-105" style="font-family: MathJax_Main;">−</span><span class="mo" id="MathJax-Span-106" style="font-family: MathJax_Main; padding-left: 0.272em;">&gt;</span><span class="mn" id="MathJax-Span-107" style="font-family: MathJax_Main; padding-left: 0.272em;">2</span><span class="mo" id="MathJax-Span-108" style="font-family: MathJax_Main;">−</span><span class="mo" id="MathJax-Span-109" style="font-family: MathJax_Main; padding-left: 0.272em;">&gt;</span><span class="mn" id="MathJax-Span-110" style="font-family: MathJax_Main; padding-left: 0.272em;">3</span><span class="mo" id="MathJax-Span-111" style="font-family: MathJax_Main;">−</span><span class="mo" id="MathJax-Span-112" style="font-family: MathJax_Main; padding-left: 0.272em;">&gt;</span><span class="mn" id="MathJax-Span-113" style="font-family: MathJax_Main; padding-left: 0.272em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 1.07em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mo>−</mo><mo>&gt;</mo><mn>2</mn><mo>−</mo><mo>&gt;</mo><mn>3</mn><mo>−</mo><mo>&gt;</mo><mn>1</mn></math></span></span> সাইকেলটার মোট ওয়েট নেগেটিভ (<span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-17-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;&amp;#x2013;&lt;/mo&gt;&lt;mn&gt;10&lt;/mn&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-114" style="width: 8.013em; display: inline-block;"><span style="display: inline-block; position: relative; width: 6.454em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1006.4em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-115"><span class="mn" id="MathJax-Span-116" style="font-family: MathJax_Main;">3</span><span class="mo" id="MathJax-Span-117" style="font-family: MathJax_Main; padding-left: 0.218em;">+</span><span class="mn" id="MathJax-Span-118" style="font-family: MathJax_Main; padding-left: 0.218em;">2</span><span class="mo" id="MathJax-Span-119" style="font-family: MathJax_Main;">–</span><span class="mn" id="MathJax-Span-120" style="font-family: MathJax_Main; padding-left: 0.164em;">10</span><span class="mo" id="MathJax-Span-121" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mo" id="MathJax-Span-122" style="font-family: MathJax_Main; padding-left: 0.272em;">−</span><span class="mn" id="MathJax-Span-123" style="font-family: MathJax_Main;">5</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 1.07em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>3</mn><mo>+</mo><mn>2</mn><mo>–</mo><mn>10</mn><mo>=</mo><mo>−</mo><mn>5</mn></math></span></span>)। তাই তুমি যতবার এই সাইকেলে ঘুরবে শর্টেস্ট পাথ তত ছোট হতে থাকবে। <strong>তাই নেগেটিভ সাইকেল থাকলে এবং সোর্স থেকে সেই নেগেটিভ সাইকেলে যাবার পথ থাকলে সোর্সের শর্টেস্ট পাথ আনডিফাইনড বা অসংজ্ঞায়িত। </strong>যদি <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-18-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-124" style="width: 2.906em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.315em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1002.26em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-125"><span class="mi" id="MathJax-Span-126" style="font-family: MathJax_Math-italic;">n</span><span class="mo" id="MathJax-Span-127" style="font-family: MathJax_Main; padding-left: 0.218em;">−</span><span class="mn" id="MathJax-Span-128" style="font-family: MathJax_Main; padding-left: 0.218em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 1.07em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>−</mo><mn>1</mn></math></span></span> বার গ্রাফ রিল‍্যাক্স করার পর দেখি যে <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-19-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-129" style="width: 0.755em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.594em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.777em 1000.59em 2.53em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-130"><span class="mi" id="MathJax-Span-131" style="font-family: MathJax_Math-italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.67em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span> তম বারও কোনো নোডের cost আপডেট করা যায় তখন বুঝতে হবে আমরা নেগেটিভ সাইকেলে গিয়ে পরেছি, শর্টেস্ট পাথ বের করা সম্ভব না।</p>
+<p>আমাদের সুডোকোড তাহলে হবে এরকম:</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5891bcda4d241282294615" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar hidden-originally" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title">bellman</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info hidden-originally" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="mouseover" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">Input: A non-empty connected weighted graph G with vertices G.V and edges G.E
+procedure Bellman Ford(G,source):
+1  Let distance[] ← infinity
+2  Let N ← number of nodes
+3  distance[source] = 0
+4  for step from 1 to N-1
+5             for all edges from (u,v) in G.E
+6                 if distance[u] + cost[u][v] &lt; distance[v]
+7                               distance[v] = distance[u] + cost[u][v]
+8                        end if
+9              end for
+10 end for
+11 for all edges from (u,v) in G.E
+12            if distance[u] + cost[u][v] &lt; distance[v]
+13        return “Negative cycle detected
+14            end if
+15 end for
+16 return distance</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -26px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-2">2</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-4">4</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-6">6</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-8">8</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-10">10</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-12">12</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-14">14</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-16">16</div><div class="crayon-num" data-line="crayon-5891bcda4d241282294615-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5891bcda4d241282294615-18">18</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5891bcda4d241282294615-1"><span class="crayon-v">Input</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-i">A</span><span class="crayon-h"> </span><span class="crayon-v">non</span><span class="crayon-o">-</span><span class="crayon-e">empty </span><span class="crayon-e">connected </span><span class="crayon-e">weighted </span><span class="crayon-i">graph</span><span class="crayon-h"> </span><span class="crayon-i">G</span><span class="crayon-h"> </span><span class="crayon-e">with </span><span class="crayon-i">vertices</span><span class="crayon-h"> </span><span class="crayon-v">G</span><span class="crayon-sy">.</span><span class="crayon-i">V</span><span class="crayon-h"> </span><span class="crayon-st">and</span><span class="crayon-h"> </span><span class="crayon-i">edges</span><span class="crayon-h"> </span><span class="crayon-v">G</span><span class="crayon-sy">.</span><span class="crayon-i">E</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-2"><span class="crayon-e">procedure </span><span class="crayon-e">Bellman </span><span class="crayon-e">Ford</span><span class="crayon-sy">(</span><span class="crayon-v">G</span><span class="crayon-sy">,</span><span class="crayon-v">source</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-3"><span class="crayon-cn">1</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">Let </span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-h"> </span>←<span class="crayon-h"> </span><span class="crayon-i">infinity</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-4"><span class="crayon-cn">2</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-i">Let</span><span class="crayon-h"> </span><span class="crayon-i">N</span><span class="crayon-h"> </span>←<span class="crayon-h"> </span><span class="crayon-e">number </span><span class="crayon-e">of </span><span class="crayon-i">nodes</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-5"><span class="crayon-cn">3</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-v">source</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">0</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-6"><span class="crayon-cn">4</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-e">step </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-h"> </span><span class="crayon-st">to</span><span class="crayon-h"> </span><span class="crayon-v">N</span><span class="crayon-o">-</span><span class="crayon-cn">1</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-7"><span class="crayon-cn">5</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-e">all </span><span class="crayon-e">edges </span><span class="crayon-e">from</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">u</span><span class="crayon-sy">,</span><span class="crayon-v">v</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">G</span><span class="crayon-sy">.</span><span class="crayon-i">E</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-8"><span class="crayon-cn">6</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">cost</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-h"> </span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-9"><span class="crayon-cn">7</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">cost</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-10"><span class="crayon-cn">8</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">end</span><span class="crayon-h"> </span><span class="crayon-st">if</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-11"><span class="crayon-cn">9</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">end</span><span class="crayon-h"> </span><span class="crayon-st">for</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-12"><span class="crayon-cn">10</span><span class="crayon-h"> </span><span class="crayon-st">end</span><span class="crayon-h"> </span><span class="crayon-st">for</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-13"><span class="crayon-cn">11</span><span class="crayon-h"> </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-e">all </span><span class="crayon-e">edges </span><span class="crayon-e">from</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">u</span><span class="crayon-sy">,</span><span class="crayon-v">v</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">G</span><span class="crayon-sy">.</span><span class="crayon-i">E</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-14"><span class="crayon-cn">12</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">cost</span><span class="crayon-sy">[</span><span class="crayon-v">u</span><span class="crayon-sy">]</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-h"> </span><span class="crayon-v">distance</span><span class="crayon-sy">[</span><span class="crayon-v">v</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-15"><span class="crayon-cn">13</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span>“<span class="crayon-e">Negative </span><span class="crayon-e">cycle </span><span class="crayon-i">detected</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-16"><span class="crayon-cn">14</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">end</span><span class="crayon-h"> </span><span class="crayon-st">if</span></div><div class="crayon-line" id="crayon-5891bcda4d241282294615-17"><span class="crayon-cn">15</span><span class="crayon-h"> </span><span class="crayon-st">end</span><span class="crayon-h"> </span><span class="crayon-st">for</span></div><div class="crayon-line crayon-striped-line" id="crayon-5891bcda4d241282294615-18"><span class="crayon-cn">16</span><span class="crayon-h"> </span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-v">distance</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0066 seconds] -->
+<p><strong>পাথ প্রিন্ট করা:</strong></p>
+<p>বিএফএস বা ডায়াক্সট্রাতে যেভাবে পাথ প্রিন্ট করে ঠিক সেভাবে এখানেও পাথ প্রিন্ট করা যাবে। <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-20-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-132" style="width: 5.379em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.304em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1004.2em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-133"><span class="mi" id="MathJax-Span-134" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-135" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-136" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-137" style="font-family: MathJax_Math-italic;">v</span><span class="mi" id="MathJax-Span-138" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-139" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-140" style="font-family: MathJax_Math-italic;">u</span><span class="mi" id="MathJax-Span-141" style="font-family: MathJax_Math-italic;">s</span><span class="mo" id="MathJax-Span-142" style="font-family: MathJax_Main;">[</span><span class="mo" id="MathJax-Span-143" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi><mi>r</mi><mi>e</mi><mi>v</mi><mi>i</mi><mi>o</mi><mi>u</mi><mi>s</mi><mo stretchy="false">[</mo><mo stretchy="false">]</mo></math></span></span> নামের একটা অ‍্যারে নাও। <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-21-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-144" style="width: 8.336em; display: inline-block;"><span style="display: inline-block; position: relative; width: 6.723em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1006.72em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-145"><span class="mi" id="MathJax-Span-146" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-147" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-148" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-149" style="font-family: MathJax_Math-italic;">v</span><span class="mi" id="MathJax-Span-150" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-151" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-152" style="font-family: MathJax_Math-italic;">u</span><span class="mi" id="MathJax-Span-153" style="font-family: MathJax_Math-italic;">s</span><span class="mo" id="MathJax-Span-154" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-155" style="font-family: MathJax_Math-italic;">v</span><span class="mo" id="MathJax-Span-156" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-157" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mi" id="MathJax-Span-158" style="font-family: MathJax_Math-italic; padding-left: 0.272em;">u</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi><mi>r</mi><mi>e</mi><mi>v</mi><mi>i</mi><mi>o</mi><mi>u</mi><mi>s</mi><mo stretchy="false">[</mo><mi>v</mi><mo stretchy="false">]</mo><mo>=</mo><mi>u</mi></math></span></span> মানে হলো <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-22-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-159" style="width: 0.594em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.487em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.777em 1000.49em 2.53em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-160"><span class="mi" id="MathJax-Span-161" style="font-family: MathJax_Math-italic;">v</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.67em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>v</mi></math></span></span> তম নোডে তুমি <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-23-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-162" style="width: 0.755em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.594em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.777em 1000.59em 2.53em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-163"><span class="mi" id="MathJax-Span-164" style="font-family: MathJax_Math-italic;">u</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.67em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>u</mi></math></span></span> থেকে এসেছ। শুরুতে অ‍্যারেতে ইনফিনিটি থাকবে। <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-24-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mo&gt;&amp;gt;&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-165" style="width: 3.927em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.175em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.616em 1003.17em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-166"><span class="mi" id="MathJax-Span-167" style="font-family: MathJax_Math-italic;">u</span><span class="mo" id="MathJax-Span-168" style="font-family: MathJax_Main;">−</span><span class="mo" id="MathJax-Span-169" style="font-family: MathJax_Main; padding-left: 0.272em;">&gt;</span><span class="mi" id="MathJax-Span-170" style="font-family: MathJax_Math-italic; padding-left: 0.272em;">v</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 0.937em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>u</mi><mo>−</mo><mo>&gt;</mo><mi>v</mi></math></span></span> এজটা রিল‍্যাক্স করার সময় <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-25-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-171" style="width: 8.336em; display: inline-block;"><span style="display: inline-block; position: relative; width: 6.723em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1006.72em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-172"><span class="mi" id="MathJax-Span-173" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-174" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-175" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-176" style="font-family: MathJax_Math-italic;">v</span><span class="mi" id="MathJax-Span-177" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-178" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-179" style="font-family: MathJax_Math-italic;">u</span><span class="mi" id="MathJax-Span-180" style="font-family: MathJax_Math-italic;">s</span><span class="mo" id="MathJax-Span-181" style="font-family: MathJax_Main;">[</span><span class="mi" id="MathJax-Span-182" style="font-family: MathJax_Math-italic;">v</span><span class="mo" id="MathJax-Span-183" style="font-family: MathJax_Main;">]</span><span class="mo" id="MathJax-Span-184" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mi" id="MathJax-Span-185" style="font-family: MathJax_Math-italic; padding-left: 0.272em;">u</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi><mi>r</mi><mi>e</mi><mi>v</mi><mi>i</mi><mi>o</mi><mi>u</mi><mi>s</mi><mo stretchy="false">[</mo><mi>v</mi><mo stretchy="false">]</mo><mo>=</mo><mi>u</mi></math></span></span> করে দাও। এখন তুমি <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-26-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-186" style="width: 4.68em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.766em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1003.71em 2.745em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-187"><span class="mi" id="MathJax-Span-188" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-189" style="font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-190" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-191" style="font-family: MathJax_Math-italic;">v</span><span class="mi" id="MathJax-Span-192" style="font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-193" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-194" style="font-family: MathJax_Math-italic;">u</span><span class="mi" id="MathJax-Span-195" style="font-family: MathJax_Math-italic;">s</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.33em; border-left: 0px solid; width: 0px; height: 1.203em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi><mi>r</mi><mi>e</mi><mi>v</mi><mi>i</mi><mi>o</mi><mi>u</mi><mi>s</mi></math></span></span> অ‍্যারে দেখে সোর্স থেকে যেকোন নোডের পাথ বের করে ফেলতে পারবে।</p>
+<p><strong>কমপ্লেক্সিটি:</strong></p>
+<p>সর্বোচ্চ <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-27-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-196" style="width: 2.906em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.315em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.562em 1002.26em 2.637em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-197"><span class="mi" id="MathJax-Span-198" style="font-family: MathJax_Math-italic;">n</span><span class="mo" id="MathJax-Span-199" style="font-family: MathJax_Main; padding-left: 0.218em;">−</span><span class="mn" id="MathJax-Span-200" style="font-family: MathJax_Main; padding-left: 0.218em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.197em; border-left: 0px solid; width: 0px; height: 1.07em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>−</mo><mn>1</mn></math></span></span> বার প্রতিটা এজকে রিল‍্যাক্স করতে হবে, টাইম কমপ্লেক্সিটি <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-28-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2217;&lt;/mo&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-201" style="width: 4.411em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.551em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.454em 1003.44em 2.798em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-202"><span class="mi" id="MathJax-Span-203" style="font-family: MathJax_Math-italic;">O</span><span class="mo" id="MathJax-Span-204" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-205" style="font-family: MathJax_Math-italic;">n</span><span class="mo" id="MathJax-Span-206" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mi" id="MathJax-Span-207" style="font-family: MathJax_Math-italic; padding-left: 0.218em;">e</span><span class="mo" id="MathJax-Span-208" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.397em; border-left: 0px solid; width: 0px; height: 1.403em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo>∗</mo><mi>e</mi><mo stretchy="false">)</mo></math></span></span>।</p>
+<p><strong>চিন্তা করার জন‍্য কিছু প্রবলেম:</strong></p>
+<ul>
+<li>তোমাকে একটা গ্রাফ দিয়ে বলা হল শর্টেস্ট পাথে সর্বোচ্চ <span class="MathJax_Preview hidden-originally" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-29-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-209" style="width: 0.755em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.594em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.777em 1000.54em 2.53em -999.997em); top: -2.363em; left: 0em;"><span class="mrow" id="MathJax-Span-210"><span class="mi" id="MathJax-Span-211" style="font-family: MathJax_Math-italic;">x</span></span><span style="display: inline-block; width: 0px; height: 2.368em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.67em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math></span></span> টা এজ থাকতে পারে। এবার কিভাবে শর্টেস্ট পাথ বের করবে? <a href="http://uva.onlinejudge.org/external/112/11280.html" onclick="__gaTracker(&#39;send&#39;, &#39;event&#39;, &#39;outbound-article&#39;, &#39;http://uva.onlinejudge.org/external/112/11280.html&#39;, &#39;(UVA 11280)&#39;);">(UVA 11280)</a></li>
+<li>একটি গ্রাফে কোন কোন নোড নেগেটিভ সাইকেলের অংশ কিভাবে বের করবে? (হিন্টস: স্ট্রংলি কানেক্টেড কম্পোনেন্ট + বেল‍ম‍্যান ফোর্ড)</li>
+</ul>
+<p><strong>রিলেটেড কিছু প্রবলেম:</strong></p>
+<p><a href="http://uva.onlinejudge.org/external/5/558.html" onclick="__gaTracker(&#39;send&#39;, &#39;event&#39;, &#39;outbound-article&#39;, &#39;http://uva.onlinejudge.org/external/5/558.html&#39;, &#39;UVA 558(সহজ)&#39;);">UVA 558(সহজ)</a><br>
+<a href="http://uva.onlinejudge.org/external/104/10449.html" onclick="__gaTracker(&#39;send&#39;, &#39;event&#39;, &#39;outbound-article&#39;, &#39;http://uva.onlinejudge.org/external/104/10449.html&#39;, &#39;LOJ 1108\nUVA 10449&#39;);">LOJ 1108<br>
+UVA 10449</a></p>
+<p>&nbsp;</p>
+<p>হ‍্যাপি কোডিং!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="printfriendly pf-aligncenter"><a href="http://www.shafaetsplanet.com/planetcoding/#" rel="nofollow" onclick="window.print(); return false;" class="noslimstat"><img style="border:none;-webkit-box-shadow:none; box-shadow:none;" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/pf-button-both.gif" alt="Print Friendly" width="113"></a></div></div><!-- Facebook Comments Plugin for WordPress: http://peadig.com/wordpress-plugins/facebook-comments/ --><h3>ফেসবুকে মন্তব্য</h3><p><fb:comments-count href="http://www.shafaetsplanet.com/planetcoding/?p=2044" fb-xfbml-state="rendered" class=""><span class="fb_comments_count">2</span></fb:comments-count> comments</p><div class="fb-comments fb_iframe_widget_loader fb_iframe_widget" data-href="http://www.shafaetsplanet.com/planetcoding/?p=2044" data-num-posts="10" data-width="450" data-colorscheme="light" fb-xfbml-state="parsed"><span style="height: 100px; width: 450px;"></span></div><p>Powered by <a href="http://peadig.com/wordpress-plugins/facebook-comments/">Facebook Comments</a></p><div class="apss-social-share apss-theme-4 clearfix">
+
+
+				<div class="apss-facebook apss-single-icon">
+					<a rel="nofollow" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.shafaetsplanet.com/planetcoding/?p=2044">
+						<div class="apss-icon-block clearfix">
+							<i class="fa fa-facebook"></i>
+							<span class="apss-social-text hidden-originally">Share on Facebook</span>
+							<span class="apss-share hidden-originally">Share</span>
+						</div>
+											</a>
+				</div>
+								<div class="apss-twitter apss-single-icon">
+					<a rel="nofollow" title="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text=%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AB%20%E0%A6%A5%E0%A6%BF%E0%A6%93%E0%A6%B0%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%B9%E0%A6%BE%E0%A6%A4%E0%A7%87%E0%A6%96%E0%A7%9C%E0%A6%BF%20%E0%A7%A7%E0%A7%A7%3A%20%E0%A6%AC%E0%A7%87%E0%A6%B2%E0%A6%AE%E2%80%8D%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%20%E0%A6%AB%E0%A7%87%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%A1&amp;url=http%3A%2F%2Fwww.shafaetsplanet.com%2Fplanetcoding%2F%3Fp%3D2044&amp;">
+						<div class="apss-icon-block clearfix">
+							<i class="fa fa-twitter"></i>
+							<span class="apss-social-text hidden-originally">Share on Twitter</span><span class="apss-share hidden-originally">Tweet</span>
+						</div>
+											</a>
+				</div>
+								<div class="apss-google-plus apss-single-icon">
+					<a rel="nofollow" title="Share on Google Plus" target="_blank" href="https://plus.google.com/share?url=http://www.shafaetsplanet.com/planetcoding/?p=2044">
+						<div class="apss-icon-block clearfix">
+							<i class="fa fa-google-plus"></i>
+							<span class="apss-social-text hidden-originally">Share on Google Plus</span>
+							<span class="apss-share hidden-originally">Share</span>
+						</div>
+											</a>
+				</div>
+				
+				<div class="apss-linkedin apss-single-icon">
+					<a rel="nofollow" title="Share on LinkedIn" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;title=%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AB%20%E0%A6%A5%E0%A6%BF%E0%A6%93%E0%A6%B0%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%B9%E0%A6%BE%E0%A6%A4%E0%A7%87%E0%A6%96%E0%A7%9C%E0%A6%BF%20%E0%A7%A7%E0%A7%A7%3A%20%E0%A6%AC%E0%A7%87%E0%A6%B2%E0%A6%AE%E2%80%8D%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%20%E0%A6%AB%E0%A7%87%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%A1&amp;url=http://www.shafaetsplanet.com/planetcoding/?p=2044&amp;summary=%E0%A6%AC%E0%A7%87%E0%A6%B2%E0%A6%AE%E2%80%8D%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%20%E0%A6%AB%E0%A7%87%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%A1%20%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AB%E0%A7%87%20%E0%A6%B6%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%20%E0%A6%AA%E0%A6%BE%E0%A6%A5...">
+						<div class="apss-icon-block clearfix"><i class="fa fa-linkedin"></i>
+							<span class="apss-social-text hidden-originally">Share on LinkedIn</span>
+							<span class="apss-share hidden-originally">Share</span>
+						</div>
+											</a>
+				</div>
+				</div>			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links">Posted in <a href="http://www.shafaetsplanet.com/planetcoding/?cat=35" rel="category">অ্যালগোরিদম/প্রবলেম সলভিং</a>, <a href="http://www.shafaetsplanet.com/planetcoding/?cat=1" rel="category">প্রোগ্রামিং</a></span><span class="tags-links">Tagged <a href="http://www.shafaetsplanet.com/planetcoding/?tag=%e0%a6%97%e0%a7%8d%e0%a6%b0%e0%a6%be%e0%a6%ab" rel="tag">গ্রাফ</a>, <a href="http://www.shafaetsplanet.com/planetcoding/?tag=%e0%a6%97%e0%a7%8d%e0%a6%b0%e0%a6%be%e0%a6%ab-%e0%a6%a5%e0%a6%bf%e0%a6%93%e0%a6%b0%e0%a6%bf" rel="tag">গ্রাফ থিওরি</a>, <a href="http://www.shafaetsplanet.com/planetcoding/?tag=%e0%a6%a8%e0%a7%87%e0%a6%97%e0%a7%87%e0%a6%9f%e0%a6%bf%e0%a6%ad-%e0%a6%b8%e0%a6%be%e0%a6%87%e0%a6%95%e0%a7%87%e0%a6%b2" rel="tag">নেগেটিভ সাইকেল</a>, <a href="http://www.shafaetsplanet.com/planetcoding/?tag=%e0%a6%ac%e0%a7%87%e0%a6%b2%e0%a6%ae%e2%80%8d%e0%a7%8d%e0%a6%af%e0%a6%be%e0%a6%a8-%e0%a6%ab%e0%a7%87%e0%a6%be%e0%a6%b0%e0%a7%8d%e0%a6%a1" rel="tag">বেলম‍্যান ফোর্ড</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->			24,898 বার পড়া হয়েছে				<nav class="navigation post-navigation clearfix" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="http://www.shafaetsplanet.com/planetcoding/?p=1961" rel="prev"><span class="meta-nav hidden-originally">←</span>&nbsp;ডাটা স্ট্রাকচার: বাইনারি ইনডেক্সড ট্রি</a></div><div class="nav-next"><a href="http://www.shafaetsplanet.com/planetcoding/?p=2130" rel="next">কোয়ান্টাম কম্পিউটার – ১ (কোয়ান্টাম কম্পিউটার কী?)&nbsp;<span class="meta-nav hidden-originally">→</span></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+				 
+			
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			5 thoughts on “<span>গ্রাফ থিওরিতে হাতেখড়ি ১১: বেলম‍্যান ফোর্ড</span>”		</h2>
+
+		
+		<ol class="comment-list">
+					<li id="comment-57865" class="comment even thread-even depth-1">
+			<article id="div-comment-57865" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/74eddf40d9fa004f2806684e5d594e59" srcset="http://1.gravatar.com/avatar/74eddf40d9fa004f2806684e5d594e59?s=64&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-32 photo" height="32" width="32">						<b class="fn">Noman Ahmed</b> <span class="says hidden-originally">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.shafaetsplanet.com/planetcoding/?p=2044#comment-57865">
+							<time datetime="২০১৪-১০-৩১T০৫:২৮:৪২+০০:০০">
+								অক্টোবর ৩১, ২০১৪ at ৫:২৮ am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>ভাইয়া আপনাকে অনেক ধন্যবাদ <img draggable="false" class="emoji" alt="🙂" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/1f642.png" width="15"> ।গ্রাফ থিওরির পাশাপাশি DP আর ডাটা স্ট্রাকচার নিয়ে আরও নতুন কোন পোস্ট দিলে খুবই খুশি হতাম <img draggable="false" class="emoji" alt="🙂" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/1f642.png" width="15"></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.shafaetsplanet.com/planetcoding/?p=2044&amp;replytocom=57865#respond" onclick="return addComment.moveForm( &quot;div-comment-57865&quot;, &quot;57865&quot;, &quot;respond&quot;, &quot;2044&quot; )" aria-label="Reply to Noman Ahmed">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-58025" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-58025" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/6c146edeb31c66aaec692a5e9d166e3f" srcset="http://0.gravatar.com/avatar/6c146edeb31c66aaec692a5e9d166e3f?s=64&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-32 photo" height="32" width="32">						<b class="fn">Rubel Ahmed</b> <span class="says hidden-originally">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.shafaetsplanet.com/planetcoding/?p=2044#comment-58025">
+							<time datetime="২০১৫-০২-১৭T১২:১৭:০৯+০০:০০">
+								ফেব্রুয়ারি ১৭, ২০১৫ at ১২:১৭ pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>এজ রিলাক্স করাটা উপরে বুঝলাম, কিন্তু নিচে, মানে টেবিল এ বুঝি নাই।<br>
+” একবার ‘গ্রাফ রিল‍্যাক্স’ করার মানে হল গ্রাফটার সবগুলো এজকে একবার করে রিল‍্যাক্স করা।”</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.shafaetsplanet.com/planetcoding/?p=2044&amp;replytocom=58025#respond" onclick="return addComment.moveForm( &quot;div-comment-58025&quot;, &quot;58025&quot;, &quot;respond&quot;, &quot;2044&quot; )" aria-label="Reply to Rubel Ahmed">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-58027" class="comment even thread-even depth-1">
+			<article id="div-comment-58027" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bd19db0824e76adf42e1163e25758772" srcset="http://2.gravatar.com/avatar/bd19db0824e76adf42e1163e25758772?s=64&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-32 photo" height="32" width="32">						<b class="fn">Avijt Bhattacharjee</b> <span class="says hidden-originally">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.shafaetsplanet.com/planetcoding/?p=2044#comment-58027">
+							<time datetime="২০১৫-০২-১৯T১২:১৩:৫৭+০০:০০">
+								ফেব্রুয়ারি ১৯, ২০১৫ at ১২:১৩ pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Shafaet vi, It’s very pleasing to learn any thing in Bangla .Thank u for ur contribution and hope it continues for us.:-)</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.shafaetsplanet.com/planetcoding/?p=2044&amp;replytocom=58027#respond" onclick="return addComment.moveForm( &quot;div-comment-58027&quot;, &quot;58027&quot;, &quot;respond&quot;, &quot;2044&quot; )" aria-label="Reply to Avijt Bhattacharjee">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-58354" class="comment odd alt thread-odd thread-alt depth-1 parent">
+			<article id="div-comment-58354" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/2699fe7a5c56efdeb04e314768bd74e9" srcset="http://2.gravatar.com/avatar/2699fe7a5c56efdeb04e314768bd74e9?s=64&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-32 photo" height="32" width="32">						<b class="fn">muhaimin</b> <span class="says hidden-originally">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.shafaetsplanet.com/planetcoding/?p=2044#comment-58354">
+							<time datetime="২০১৫-১২-০৫T১৪:০৩:৩১+০০:০০">
+								ডিসেম্বর ৫, ২০১৫ at ২:০৩ pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>if distance[u] + cost[u][v] &lt; distance[v]<br>
+                               distance[u]=distance[v]+1<br>
+I think it's wrong :\ it should be<br>
+distance[v] = distance[u] + cost[u][v];</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.shafaetsplanet.com/planetcoding/?p=2044&amp;replytocom=58354#respond" onclick="return addComment.moveForm( &quot;div-comment-58354&quot;, &quot;58354&quot;, &quot;respond&quot;, &quot;2044&quot; )" aria-label="Reply to muhaimin">Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-58357" class="comment byuser comment-author-Shafaet_amarsite bypostauthor even depth-2">
+			<article id="div-comment-58357" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/2140379" class="avatar avatar-social-login avatar-32 photo" height="32" width="32">						<b class="fn">শাফায়েত</b> <span class="says hidden-originally">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.shafaetsplanet.com/planetcoding/?p=2044#comment-58357">
+							<time datetime="২০১৫-১২-০৬T১৬:২৭:০৮+০০:০০">
+								ডিসেম্বর ৬, ২০১৫ at ৪:২৭ pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>ঠিক করে দিলাম, ধন্যবাদ।</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.shafaetsplanet.com/planetcoding/?p=2044&amp;replytocom=58357#respond" onclick="return addComment.moveForm( &quot;div-comment-58357&quot;, &quot;58357&quot;, &quot;respond&quot;, &quot;2044&quot; )" aria-label="Reply to শাফায়েত">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+		
+	
+	
+					<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.shafaetsplanet.com/planetcoding/?p=2044#respond" style="display:none;" class=" hidden-originally">Cancel reply</a></small></h3>				<form action="http://www.shafaetsplanet.com/planetcoding/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+					 <!-- OneAll.com / Social Login for WordPress / v5.2 -->
+<div class="oneall_social_login">
+ <div class="oneall_social_login_label" style="margin-bottom: 3px;"><label>Connect with:</label></div>
+ <div class="oneall_social_login_providers" id="oneall_social_login_providers_7969768"></div>
+ 
+</div><p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200"></p>
+<p class="cptch_block"><br>
+			<span id="cptch_time_limit_notice_13" class="cptch_time_limit_notice cptch_to_remove hidden-originally">Time limit is exhausted. Please reload CAPTCHA.</span><span class="cptch_wrap">
+				<label class="cptch_label" for="cptch_input">
+					<span class="cptch_span">9</span>
+					<span class="cptch_span">&nbsp;+&nbsp;</span>
+					<span class="cptch_span"><input id="cptch_input_13" class="cptch_input " type="text" autocomplete="off" name="cptch_number" value="" maxlength="2" size="2" aria-required="true" required="required" style="margin-bottom:0;display:inline;font-size: 12px;width: 40px;"></span>
+					<span class="cptch_span">&nbsp;=&nbsp;</span>
+					<span class="cptch_span">twelve</span>
+					<input type="hidden" name="cptch_result" value="OaM=" class=" hidden-originally">
+					<input type="hidden" name="cptch_time" value="1485946073" class=" hidden-originally">
+					<input type="hidden" value="Version: 4.2.2" class=" hidden-originally">
+				</label><span class="cptch_reload_button_wrap hide-if-no-js">
+					
+					<span class="cptch_reload_button dashicons dashicons-update"></span>
+				</span></span></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="2044" id="comment_post_ID" class=" hidden-originally">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0" class=" hidden-originally">
+</p><p style="display: none;" class=" hidden-originally"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="ae24182231" class=" hidden-originally"></p>
+    <p class="comment-form-comment"><input type="button" value="phonetic" onclick="banglakb_public_comment(phonetic);">
+    <input type="button" value="probhat" onclick="banglakb_public_comment(probhat);">
+    <input type="button" value="english" onclick="banglakb_toggle();">
+    </p><p style="display: none;" class=" hidden-originally"></p>				<input type="hidden" id="ak_js" name="ak_js" value="1485946077704" class=" hidden-originally"></form>
+					</div><!-- #respond -->
+		
+</div><!-- #comments -->                
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+    <div id="secondary-right" class="widget-area right-sidebar sidebar">
+        			<aside id="oa_social_login-2" class="widget widget_oa_social_login"><h3 class="widget-title"><span>সাবস্ক্রাইব</span></h3> <!-- OneAll.com / Social Login for WordPress / v5.2 -->
+<div class="oneall_social_login">
+ <div class="oneall_social_login_providers" id="oneall_social_login_providers_2773204"></div>
+ 
+</div></aside><aside id="text-8" class="widget widget_text"><h3 class="widget-title"><span>আমার সম্পর্কে</span></h3>			<div class="textwidget">শাফায়েত, সফটওয়্যার ইঞ্জিনিয়ার @ <a href="http://hackerrank.com/" onclick="__gaTracker(&#39;send&#39;, &#39;event&#39;, &#39;outbound-widget&#39;, &#39;http://hackerrank.com &#39;, &#39;&#39;);"><img class="aligncenter  wp-image-2187" style="display: inline;" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/hackerranklogo_green-f525139abeb8869d17bcd7c49e5cffbc.png" alt="hackerranklogo_green-f525139abeb8869d17bcd7c49e5cffbc" width="100" height="29"></a>
+ <a href="http://www.shafaetsplanet.com/planetcoding/?page_id=2" target="_blank" title="আমার সম্পর্কে">(বিস্তারিত...)</a>
+<br><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2946"><img src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/bookcover-4.png" width="220"></a>
+<br><br>
+
+<div class="fb-like fb_iframe_widget" data-href="http://www.shafaetsplanet.com/planetcoding/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=110501895707571&amp;container_width=293&amp;href=http%3A%2F%2Fwww.shafaetsplanet.com%2Fplanetcoding%2F&amp;layout=button_count&amp;locale=en_GB&amp;sdk=joey&amp;share=true&amp;show_faces=true&amp;size=small"><span style="vertical-align: bottom; width: 132px; height: 20px;"></span></div>
+<br>
+<br>
+<font size="4" color="993333">প্রোগ্রামিং কনটেস্ট এবং অ‍্যালগোরিদম</font><br>
+<font size="4" color="#323166">অনুপ্রেরণা(৩):</font>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1437">কেন আমি প্রোগ্রামিং শিখবো?</a><br>
+
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1639">কম্পিউটার বিজ্ঞান কেন পড়বো?</a><br>
+
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1400"> প্রোগ্রামিং কনটেস্ট এবং অনলাইন জাজে হাতেখড়ি</a><br>
+<br>
+<font size="4" color="#323166">অ্যালগোরিদম বেসিক(৬):</font>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1313"> বিগ "O" নোটেশন</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1642"> কমপ্লেক্সিটি ক্লাস(P-NP, টুরিং মেশিন ইত‍্যাদি)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2857"> হাল্টিং প্রবলেম</a><font color="red">(নতুন)</font><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2279">বাইনারি সার্চ - ১</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2295">বাইনারি সার্চ - ২(বাইসেকশন)</a><font color="red"></font><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2822">ফ্লয়েড সাইকেল ফাইন্ডিং অ্যালগোরিদম</a><br>
+<br>
+
+
+<font size="4" color="#323166">ডাটা স্ট্রাকচার(১১):</font>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2689">লিংকড লিস্ট</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2342">স্ট্যাক</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2911">কিউ+সার্কুলার কিউ</a><font color="red">(নতুন)</font><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2316">স্লাইডিং রেঞ্জ মিনিমাম কুয়েরি (ডিকিউ)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=763">ডিসজয়েন্ট সেট(ইউনিয়ন ফাইন্ড)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1679">ট্রাই(প্রিফিক্স ট্রি/রেডিক্স ট্রি)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1557">সেগমেন্ট ট্রি-১</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1591">সেগমেন্ট ট্রি-২(লেজি প্রপাগেশন)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1388">অ্যারে কমপ্রেশন/ম্যাপিং</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1831">লোয়েস্ট কমন অ্যানসেস্টর</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1961">বাইনারি ইনডেক্সড ট্রি</a><br>
+<br>
+
+
+
+<font size="4" color="#323166">গ্রাফ থিওরি(১৮):</font>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=143"> গ্রাফ থিওরিতে হাতেখড়ি</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=184">অ্যাডজেসেন্সি ম্যাট্রিক্স</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=211">অ্যাডজেসেন্সি লিস্ট</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=604">ব্রেথড ফার্স্ট সার্চ (বিএফএস)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=692">মিনিমাম স্প্যানিং ট্রি ১ (প্রিমস অ্যালগোরিদম)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=825">মিনিমাম স্প্যানিং ট্রি ২ (ক্রুসকাল অ্যালগোরিদম)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=848">টপোলজিকাল সর্ট</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=973">ডেপথ ফার্স্ট সার্চ এবং আবারো টপোলোজিকাল সর্ট</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1500">ডায়াক্সট্রা</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1927">ফ্লয়েড ওয়ার্শল</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2044">বেলম‍্যান ফোর্ড</a>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2504">আর্টিকুলেশন পয়েন্ট এবং ব্রিজ</a>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2531">স্ট্রংলি কানেক্টেড কম্পোনেন্ট</a>
+<br>
+
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2195">ম্যাক্সিমাম ফ্লো-১</a>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2231">ম্যাক্সিমাম ফ্লো-২</a>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1187">স্টেবল ম্যারেজ প্রবলেম</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=582">মিনিমাম ভারটেক্স কভার</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=521">ট্রি এর ডায়ামিটার নির্ণয়</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2781">লংগেস্ট পাথ প্রবলেম</a><font color="red">(নতুন)</font><br>
+<br>
+
+<font size="4" color="#323166">অ্যালগোরিদম গেম থিওরি(৩):</font>
+
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2325">গেম থিওরি-১</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2608">গেম থিওরি-২</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2714">গেম থিওরি-৩</a><br>
+
+<br>
+<font size="4" color="#323166">ডাইনামিক প্রোগ্রামিং(৮):</font>
+<br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1022">শুরুর কথা</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1072">ডিপি 'স্টেট', NcR, ০-১ ন্যাপস্যাক</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1158">কয়েন চেঞ্জ, রক ক্লাইম্বিং</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1211"> ডিপি সলিউশন প্রিন্ট করা এবং LIS</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1357">বিটমাস্ক ডিপি</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=582">মিনিমাম ভারটেক্স কভার(গ্রাফ+ডিপি)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1862">লংগেস্ট কমন সাবসিকোয়েন্স(LCS)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1885">ম‍্যাট্রিক্স চেইন মাল্টিপ্লিকেশন</a><br><br>
+
+
+<font size="4" color="#323166">ব্যাকট্র্যাকিং(১):</font>
+<br>
+
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1266"> ব্যকট্র্যাকিং বেসিক এবং পারমুটেশন জেনারেটর</a><br>
+<br>
+
+
+<font size="4" color="#323166">নাম্বার থিওরি/গণিত(৪):</font>
+<br>
+
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=936">মডুলার অ্যারিথমেটিক</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=624">প্রাইম জেনারেটর (Sieve of Eratosthenes)</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=855">বিটওয়াইজ সিভ</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=600">ডিরেঞ্জমেন্ট</a><br>
+
+<br>
+
+<font size="4" color="#323166">স্ট্রিং ম্যাচিং(১):</font><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=3028">রবিন-কার্প স্ট্রিং ম্যাচিং</a><font color="red">(নতুন)</font><br>
+<br>
+<font size="4" color="323166">অন্যান্য(৩) :</font><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1448">ডিরেকশন অ্যারে</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=1756">মিট ইন দ্যা মিডল</a><font color="red"></font>
+
+<br>
+<font size="4" color="993333">কোয়ান্টাম কম্পিউটার(২)</font><br>
+
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2130">
+কোয়ান্টাম কম্পিউটার কী?</a><br>
+<a href="http://www.shafaetsplanet.com/planetcoding/?p=2135">
+কোয়ান্টাম কম্পিউটারের শক্তি এবং সীমাবদ্ধতা</a><br>
+
+
+
+
+
+
+
+
+</div>
+		</aside>		    </div>
+    </div>
+	
+			</div><!-- #content -->
+
+			<footer id="colophon" class="site-footer" role="contentinfo">
+		        		         
+				<div class="site-info">
+					<div id="bottom-footer">
+        				<div class="ak-container">
+        					<div class="copyright">
+                                AccessPress Staple        		                <span class="free-credit"> | WordPress Theme:  <a href="http://www.shafaetsplanet.com/planetcoding/" target="_blank">AccessPress Staple</a> by <a href="http://www.shafaetsplanet.com/planetcoding/" target="_blank">AccessPress Themes</a></span>
+        					</div>
+        		                    		            <div class="ak_footer_social">
+        		              	<div class="social-icons">
+		
+				<span><a href="https://twitter.com/shafaet90" class="twitter" data-title="Twitter" target="_blank"><i class="fa fa-twitter"></i><span></span></a></span>
+		
+		
+		
+		
+				<span><a href="https://www.linkedin.com/in/shafaetcsedu" class="linkedin" data-title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i><span></span></a></span>
+		
+		
+		
+		
+				
+		
+		
+				<span><a href="http://github.com/Shafaet" class="github" data-title="github" target="_blank"><i class="fa fa-github"></i><span></span></a></span>
+		
+				
+		    </div>
+        		            </div>
+        		                    				</div>
+				    </div>
+				</div><!-- .site-info -->
+			</footer><!-- #colophon -->
+		</div> <!-- #inner wrap -->
+	</div> <!-- #outer-wrap -->
+</div><!-- #page -->
+<div id="ak-top" style="display: none;"><i class="fa fa-angle-up"></i>top</div>
+<!-- begin visitor maps  -->
+
+<!-- end visitor maps -->
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Facebook Comments Plugin for WordPress: http://peadig.com/wordpress-plugins/facebook-comments/ -->
+<div id="fb-root"></div>
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;"></div></div><div id="pf-mask" style="z-index: 2147483627!important; position: fixed !important; top: 0pt !important; left: 0pt !important; background-color: rgb(0, 0, 0) !important; opacity: 0.8 !important;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80); height: 100% !important; width: 100% !important;"></div><iframe src="javascript:false" frameborder="0" id="pf-core" name="pf-core" style="width: 100% !important; max-width: 100% !important; height: 100% !important; display: block !important; overflow: hidden !important; position: absolute !important; top: 0px !important; left: 0px !important; background-color: transparent !important; z-index: 2147483647 !important;" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/saved_resource.html"></iframe><iframe frameborder="0" name="gaiframe" id="gaiframe" src="./গ্রাফ থিওরিতে হাতেখড়ি ১১_ বেলম_্যান ফোর্ড _ শাফায়েতের ব্লগ_files/adsense_alt.html" scrolling="no" style="display: none; position: absolute !important; height: 280px !important; margin-left: auto !important; margin-right: auto !important; left: 0px !important; right: 0px !important; z-index: 2147483647 !important; width: 700px; top: 285px;"></iframe></body></html>
