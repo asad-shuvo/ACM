@@ -84,57 +84,34 @@ ios_base::sync_with_stdio(false);
     while(test--){
     	string a;
     	cin>>a;
-    	string fn="";
-    	int f;
-    	int indx=0;
-    	int val;
-    	for(int i=0;i<a.size();i++){
-    		if(a[i]=='a')continue;
-    		val=a[i]-'0';
-    		if((a[i]-'0')%2==0){
-    			f=0;
-			}
-			else f=1;
-			indx=i;
-			int in=-1;
-			for(int j=i+1;j<a.size();j++){
-				if(a[j]=='a')continue;
-				if(f==0){
-					if((a[j]-'0')%2==1){
-						in=j;
-						int v=a[j]-'0';
-						if(v<val){
-							fn+=a[j];
-							fn+=a[i];
-							a[j]='a';
-						}
-						else{
-							fn+=a[i];
-						
-						}
-						break;
-					}
-				}
-				if(f==1){
-					if((a[j]-'0')%2==0){
-						in=j;
-						int v=a[j]-'0';
-						if(v<val){
-							fn+=a[j];
-							fn+=a[i];
-							a[j]='a';
-						}
-						else{
-							fn+=a[i];
-						
-						}
-						break;
-					}
-				}
-			}
-			if(in==-1)fn+=a[i];
+    	 int sz=a.size();
+    int arr[sz+10];
+   
+    for(int i=0;i<sz;i++){
+    	arr[i]=a[i]-'0';
+    
+	}
+	
+	vector<int>odd;
+	vector<int>even;
+
+	for(int i=0;i<sz;i++){
+		if(arr[i]%2==0){
+			even.push_back(arr[i]);
 		}
-		cout<<fn<<endl;
+		else odd.push_back(arr[i]);
+	}
+	int i=0,j=0;
+	vector<int>ret;
+	int x=odd.size(),y=even.size();
+	while(i<y or j<x){
+		if(i==y or (j<x and even[i]>odd[j])){
+			cout<<odd[j++];
+		}
+		else cout<<even[i++];
+	}
+
+	cout<<endl;
 	}
 }
 
