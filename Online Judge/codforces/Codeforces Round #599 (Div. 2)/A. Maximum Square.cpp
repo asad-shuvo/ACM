@@ -79,6 +79,23 @@ int main()
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    
+    TEST
+    while(test--){
+    	int n;
+    	cin>>n;
+    	int arr[n+5];
+    	fori(n)cin>>arr[i];
+    	sort(arr,arr+n);
+    	int cnt=0,M=INT_MAX;
+    	int m=-1;
+    	for(int i=n-1;i>=0;i--){
+    		cnt++;
+    		M=min(M,arr[i]);
+    		int mm=min(cnt,M);
+    		m=max(m,mm);
+		}
+			cout<<m<<endl;
+	}
+
 }
 

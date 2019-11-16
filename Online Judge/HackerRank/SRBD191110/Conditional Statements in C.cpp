@@ -1,4 +1,12 @@
-#include <bits/stdc++.h>
+#include <assert.h>
+#include <limits.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 using namespace std;
 int fx4[] = {1 , -1 , 0 , 0};
 int fy4[] = {0 , 0 , 1 , -1};
@@ -76,9 +84,21 @@ ll BM( ll a , ll b , ll m )
 
 int main()
 {
-ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    
+
+    int n;
+    sc1(n);
+    if(n<=9){
+    	if(n==1)pr("one\n");
+    	else if(n==2)pr("two\n");
+    	else if(n==3)pr("three\n");
+    	else if(n==4)pr("four\n");
+    	else if(n==5)pr("five\n");
+    	else if(n==6)pr("six\n");
+    	else if(n==7)pr("seven\n");
+    	else if(n==8)pr("eight\n");
+    	else if(n==9)pr("nine\n");
+//    	else if(n==)pr("");
+	}
+	else pr("%d\n",n);
 }
 

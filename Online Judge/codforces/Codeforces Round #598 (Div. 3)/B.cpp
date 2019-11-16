@@ -69,16 +69,60 @@ ll BM( ll a , ll b , ll m )
 #define fork1(N)         for(int k = 1; k<=(N); k++)
 #define ford1(N)         for(int d = 1; d<=(N); d++)
 #define sqr(x)           (x)*(x)
-#define TEST int test,te=0;cin>>test;
+
 #define segment_tree int l=(n*2),r=(n*2)+1,mid=(l+r)/2
 #define Mx 100005
 #define mx 10005
 
 int main()
 {
-ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
+
+    int test;
+    sc1(test);
+    while(test--){
+    	int n;
+    	sc1(n);
+//    	cin>>n;
+    	int arr[n+5];
+    	for(int i=0;i<n;i++)sc1(arr[i]);
+    	int plc=0;
+    	int fnd=1;
+    	vector<int>v;
+    	while(1){
+    		if(plc==n)break;
+    		v.push_back(fnd);
+    	for(int i=plc;i<n;i++){
+//    		cout<<plc<<" "<<arr[i]<<endl;
+    		if(arr[i]<fnd)continue;
+    		if(arr[i]!=fnd and arr[i+1]!=fnd){
+//    			cout<<arr[i]<<endl;
+    			v.push_back(arr[i]);
+			}
+    		if(arr[i]==fnd){
+    			if(i==n-1 and i!=plc)v.push_back(arr[i-1]);
+    			if(i==plc)plc++;
+    			else{
+				swap(arr[i],arr[i-1]);
+				plc=i;}
+    			
+//    			else plc=i-1;
+//    			cout<<"plc"<<plc<<endl;
+    			
+    			fnd++;
+    			if(i==n-1)plc=n;
+    			break;
+    		//	cout<<plc<<endl;
+			}
+			
+    		
+		}
+	}
+	fori(v.size())
+cout<<v[i]<<" ";
+cout<<endl;
+v.clear();
+	}
+	
     
 }
 

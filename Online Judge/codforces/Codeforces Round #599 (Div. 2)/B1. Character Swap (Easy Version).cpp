@@ -79,6 +79,38 @@ int main()
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
+    TEST
+    while(test--){
+    	string a,b;
+    	int n;
+    	cin>>n;
+    	cin>>a>>b;
+    	int cnt=0;
+    	vector<int>v1;
+    	fori(a.size()){
+    		
+    		if(a[i]!=b[i]){
+    		v1.p_b(i);	
+    		cnt++;
+			}
+		}
+		if(cnt==2){
+			char a1=a[v1[0]];
+			char a2=a[v1[1]];
+			char b1=b[v1[0]];
+			char b2=b[v1[1]];
+//			cout<<b2<<" "<<a1<<endl;
+			a[v1[0]]=b2;
+		//	a[v1[1]]=b1;
+		//	b[v1[0]]=a2;
+			b[v1[1]]=a1;
+//			cout<<a<<" "<<b<<endl;
+			if(a==b)
+		cout<<"YES"<<endl;
+		else cout<<"NO"<<endl;
+	}
+		else cout<<"NO"<<endl;
+	}
     
 }
 

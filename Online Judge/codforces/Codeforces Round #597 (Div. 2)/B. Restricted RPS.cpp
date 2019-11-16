@@ -69,16 +69,94 @@ ll BM( ll a , ll b , ll m )
 #define fork1(N)         for(int k = 1; k<=(N); k++)
 #define ford1(N)         for(int d = 1; d<=(N); d++)
 #define sqr(x)           (x)*(x)
-#define TEST int test,te=0;cin>>test;
+#define TEST int test,te=0;sc1(test);
 #define segment_tree int l=(n*2),r=(n*2)+1,mid=(l+r)/2
 #define Mx 100005
 #define mx 10005
 
 int main()
 {
-ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    
+
+    int test;
+    sc1(test);
+    while(test--){
+    	int n;
+    	sc1(n);
+    	int r,p,s;
+    	sc3(r,p,s);
+    //	int rr=r,pp=p,ss=s;
+    	string a;
+    	cin>>a;
+    	vector<char>v;
+    	int cnt=0,cn=0;
+    	for(int i=0;i<a.size();i++){
+    		if(a[i]=='R'){
+    			if(p>0){
+    				cnt++;
+    				p--;
+    				v.push_back('P');
+				}
+				else {
+					cn++;
+				v.push_back('Z');
+			}
+			}
+			else if(a[i]=='P'){
+    			if(s>0){
+    				cnt++;
+    				s--;
+    				v.push_back('S');
+				}
+					else {
+					cn++;
+				v.push_back('Z');
+			}
+			}
+				else if(a[i]=='S'){
+    			if(r>0){
+    				cnt++;
+    				r--;
+    				v.push_back('R');
+				}
+					else {
+					cn++;
+				v.push_back('Z');
+			}
+			}
+			
+		}
+//		int nd=(n/2);
+//		if(n%2!=0)nd++;
+		if(cn>cnt){
+			pr("NO\n");
+		}
+		else{
+			pr("YES\n");
+		//	cout<<r<<p<<s<<endl;
+			for(int i=0;i<v.size();i++){
+				if(v[i]=='Z'){
+					if(r>0){
+						v[i]='R';
+						r--;
+						cout<<v[i];
+					}
+					else if(p>0){
+						v[i]='P';
+						p--;
+						cout<<v[i];
+					}
+					else if(s>0){
+						v[i]='S';
+						s--;
+						cout<<v[i];
+					}
+				}
+				else cout<<v[i];
+			}
+			pr("\n");
+			
+		}
+//	.//	cout<<v.size();
+	}
 }
 

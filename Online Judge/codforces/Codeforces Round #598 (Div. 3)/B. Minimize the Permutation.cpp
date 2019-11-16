@@ -69,16 +69,46 @@ ll BM( ll a , ll b , ll m )
 #define fork1(N)         for(int k = 1; k<=(N); k++)
 #define ford1(N)         for(int d = 1; d<=(N); d++)
 #define sqr(x)           (x)*(x)
-#define TEST int test,te=0;cin>>test;
+
 #define segment_tree int l=(n*2),r=(n*2)+1,mid=(l+r)/2
 #define Mx 100005
 #define mx 10005
 
 int main()
 {
-ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
+
+    int test;
+    sc1(test);
+    while(test--){
+    	int n;
+    	sc1(n);
+//    	cin>>n;
+    	int arr[n+5];
+    	for(int i=0;i<n;i++)sc1(arr[i]);
+    	int plc=0;
+    	int fnd=1;
+    	int vis[105];
+    	mem(vis,0);
+    	while(1){
+    		for(int i=0;i<n;i++){
+    			if(arr[i]==fnd){
+    				for(int j=i-1;j>=0;j--){
+    					if(arr[j]>arr[j+1] and vis[j]==0){
+    						swap(arr[j],arr[j+1]);
+    						vis[j]=1;
+						}
+						else break;
+					}
+				}
+				fnd++;
+				
+			}
+			if(fnd>n)break;
+		}
+    for(int i=0;i<n;i++)cout<<arr[i]<<" ";
+    cout<<endl;
+	}
+	
     
 }
 

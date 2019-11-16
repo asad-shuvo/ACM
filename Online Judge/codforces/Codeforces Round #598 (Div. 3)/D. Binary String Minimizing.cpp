@@ -69,7 +69,7 @@ ll BM( ll a , ll b , ll m )
 #define fork1(N)         for(int k = 1; k<=(N); k++)
 #define ford1(N)         for(int d = 1; d<=(N); d++)
 #define sqr(x)           (x)*(x)
-#define TEST int test,te=0;cin>>test;
+#define TEST int test,te=0;sc1(test);
 #define segment_tree int l=(n*2),r=(n*2)+1,mid=(l+r)/2
 #define Mx 100005
 #define mx 10005
@@ -79,6 +79,37 @@ int main()
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    
+    int ts;
+    cin>>ts;
+    while(ts--){
+    	ll n,k;
+    	cin>>n>>k;
+    	string a;
+    	cin>>a;
+    	ll cnt=0;
+    	for(ll i=0;i<a.size();i++){
+    		if(a[i]=='0'){
+			
+    		ll nd=i-0;
+    		 nd=nd-cnt;
+    		if(nd<=k){
+    			if(a[cnt]=='1')a[i]='1';
+    			a[cnt]='0';
+    			cnt++;
+    			k-=nd;
+			}
+			else{
+				if(a[i-k]=='1')a[i]='1';
+    			a[i-k]='0';
+    			cnt++;
+    			k=0;
+				
+			}
+    		
+		}
+		if(k<=0)break;
+	}
+		cout<<a<<endl;
+	}
 }
 
