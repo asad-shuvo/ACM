@@ -74,27 +74,42 @@ ll BM( ll a , ll b , ll m )
 #define mx 10005
 #define __FastIO        ios_base::sync_with_stdio(false); cin.tie(0)
 
- 
-int main()
-{
-	
- 	string a;
-	 while(cin>>a){
-	 	string b=a;
-	 	sort(b.begin(),b.end());
-	 	if(a!=b)cout<<"0"<<endl;
-	 	else{
-		 
-	 	int ret=0;
-	 	for(int i=0;i<a.size();i++){
-	 		if(i!=0)
-	 		ret=ret*26+a[i]-'a'+1-(a[i-1]-'a'+1);
-	 		else ret=ret*26+a[i]-'a'+1;
-		 }
-		 cout<<ret<<endl;
-	 }
-	 
-	 }   
-}
 
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int test;
+    cin>>test;
+    stack<int>st1,st2;
+    while(test--){
+        
+         
+        int sz;
+        cin>>sz;
+        if(sz==1){
+            int x;
+            cin>>x;
+            st1.push(x);
+            int t;
+            if(st2.size()==0)st2.push(x);
+            else{
+                t=st2.top();
+                if(x>=t){
+                    st2.push(x);
+                }
+            }
+        }
+        else if(sz==2){
+            int x=st1.top();
+            st1.pop();
+            if(x==st2.top())st2.pop();
+
+        }
+        else{
+            cout<<st2.top()<<endl;
+        }
+        
+    }
+    return 0;
+}
 
