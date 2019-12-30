@@ -4,45 +4,44 @@ using namespace std;
 
 vector<string> split_string(string);
 
-// Complete the hurdleRace function below.
-int hurdleRace(int k, vector<int> height) {
+// Complete the catAndMouse function below.
+string catAndMouse(int x, int y, int z) {
 
-int M=-1;
-for(int i=0;i<height.size();i++)M=max(M,height[i]);
-int t=M-k;
-if(t<0)t=0;
-return t;
+int a=abs(z-x);
+int b=abs(z-y);
+if(a<b){
+    return "Cat A";
+}
+else if(a>b){
+    return "Cat B";
+}
+else return "Mouse C";
 }
 
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
 
-    string nk_temp;
-    getline(cin, nk_temp);
+    int q;
+    cin >> q;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    vector<string> nk = split_string(nk_temp);
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        string xyz_temp;
+        getline(cin, xyz_temp);
 
-    int n = stoi(nk[0]);
+        vector<string> xyz = split_string(xyz_temp);
 
-    int k = stoi(nk[1]);
+        int x = stoi(xyz[0]);
 
-    string height_temp_temp;
-    getline(cin, height_temp_temp);
+        int y = stoi(xyz[1]);
 
-    vector<string> height_temp = split_string(height_temp_temp);
+        int z = stoi(xyz[2]);
 
-    vector<int> height(n);
+        string result = catAndMouse(x, y, z);
 
-    for (int i = 0; i < n; i++) {
-        int height_item = stoi(height_temp[i]);
-
-        height[i] = height_item;
+        fout << result << "\n";
     }
-
-    int result = hurdleRace(k, height);
-
-    fout << result << "\n";
 
     fout.close();
 

@@ -4,14 +4,20 @@ using namespace std;
 
 vector<string> split_string(string);
 
-// Complete the hurdleRace function below.
-int hurdleRace(int k, vector<int> height) {
+// Complete the divisibleSumPairs function below.
+int divisibleSumPairs(int n, int k, vector<int> ar) {
 
-int M=-1;
-for(int i=0;i<height.size();i++)M=max(M,height[i]);
-int t=M-k;
-if(t<0)t=0;
-return t;
+int freq[k+2]={0};
+for(int i=0;i<n;i++){
+    freq[ar[i]%k]++;
+}
+int sum=(freq[0]*(freq[0]-1))/2;
+for(int i=1;i<=k/2 and i!=(k-i);i++){
+    sum+=freq[i]*freq[k-i];
+}
+if(k%2==0)
+sum+=(((freq[k/2]*(freq[k/2]-1))/2));
+return sum;
 }
 
 int main()
@@ -27,20 +33,20 @@ int main()
 
     int k = stoi(nk[1]);
 
-    string height_temp_temp;
-    getline(cin, height_temp_temp);
+    string ar_temp_temp;
+    getline(cin, ar_temp_temp);
 
-    vector<string> height_temp = split_string(height_temp_temp);
+    vector<string> ar_temp = split_string(ar_temp_temp);
 
-    vector<int> height(n);
+    vector<int> ar(n);
 
     for (int i = 0; i < n; i++) {
-        int height_item = stoi(height_temp[i]);
+        int ar_item = stoi(ar_temp[i]);
 
-        height[i] = height_item;
+        ar[i] = ar_item;
     }
 
-    int result = hurdleRace(k, height);
+    int result = divisibleSumPairs(n, k, ar);
 
     fout << result << "\n";
 

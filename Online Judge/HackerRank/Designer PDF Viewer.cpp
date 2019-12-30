@@ -4,43 +4,40 @@ using namespace std;
 
 vector<string> split_string(string);
 
-// Complete the hurdleRace function below.
-int hurdleRace(int k, vector<int> height) {
+// Complete the designerPdfViewer function below.
+int designerPdfViewer(vector<int> h, string word) {
 
 int M=-1;
-for(int i=0;i<height.size();i++)M=max(M,height[i]);
-int t=M-k;
-if(t<0)t=0;
-return t;
+for(int i=0;i<word.size();i++){
+    int t=h[word[i]-'a'];
+     M=max(M,t);
+    // cout<<M<<endl;
+}
+cout<<M<<endl;
+return M*word.size();
 }
 
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
 
-    string nk_temp;
-    getline(cin, nk_temp);
+    string h_temp_temp;
+    getline(cin, h_temp_temp);
 
-    vector<string> nk = split_string(nk_temp);
+    vector<string> h_temp = split_string(h_temp_temp);
 
-    int n = stoi(nk[0]);
+    vector<int> h(26);
 
-    int k = stoi(nk[1]);
+    for (int i = 0; i < 26; i++) {
+        int h_item = stoi(h_temp[i]);
 
-    string height_temp_temp;
-    getline(cin, height_temp_temp);
-
-    vector<string> height_temp = split_string(height_temp_temp);
-
-    vector<int> height(n);
-
-    for (int i = 0; i < n; i++) {
-        int height_item = stoi(height_temp[i]);
-
-        height[i] = height_item;
+        h[i] = h_item;
     }
 
-    int result = hurdleRace(k, height);
+    string word;
+    getline(cin, word);
+
+    int result = designerPdfViewer(h, word);
 
     fout << result << "\n";
 
