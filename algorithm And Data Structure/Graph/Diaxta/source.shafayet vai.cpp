@@ -11,7 +11,7 @@ struct node
 int d[mx],par[mx];
 int dijkstra(int n)
 {
-	memset(d,63,sizeof(d));  //অনেক বড় একটা মান বসাতে!
+	memset(d,63,sizeof(d));  
 	memset(par,-1,sizeof(par));
 	priority_queue<node>q;
 	q.push(node(1,0));
