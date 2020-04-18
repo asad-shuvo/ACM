@@ -73,48 +73,28 @@ ll BM( ll a , ll b , ll m )
 #define segment_tree int l=(n*2),r=(n*2)+1,mid=(l+r)/2
 #define Mx 100005
 #define mx 10005
+int dp[1001][1001];
+string a;
+int fun(int b,int e){
 
+	if(b==e)return 1;
+		if(dp[b][e]!=-1)return dp[b][e];
+	if(a[b]==a[e] and b+1==e)return 2;
+	if(a[b]==a[e])return fun(b+1,e-1)+2;
+	return dp[b][e]=max(fun(b+1,e),fun(b,e-1));
+}
 int main()
 {
-//	FILE
-ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    map<string,int>mp;
-		 mp["January"]=1;
-		 mp["February"]=2;
-		 mp["March"]=3;
-		 mp["April"]=4;
-		 mp["May"]=5;
-		 mp["June"]=6; 
-		 mp["July"]=7;
-		 mp["August"]=8;
-		 mp["September"]=9;
-		 mp["October"]=10;
-		 mp["November"]=11;
-		 mp["December"]=12;
-	TEST
+int test,te=0;
+sc1(test);
+//    TEST
     while(test--){
-    	
-    	string m1,m2;
-    	char c1,c2;
-    	int d1,y1,d2,y2;
-    	cin>>m1>>d1>>c1>>y1;
-    	cin>>m2>>d2>>c2>>y2;
-    	if(mp[m1]>2){
-    		y1++;
-		}
-		if(mp[m2]<2){
-			y2--;
-		}
-		else if(mp[m2]==2){
-			if(d2!=29)y2--;
-		}
-		int cnt=y2/4-(y1-1)/4;
-		cnt-=y2/100-(y1-1)/100;
-		cnt+=y2/400-(y1-1)/400;
-			cout<<"Case "<<++te<<": "<<cnt<<endl;
-
-	}
+    mem(dp,-1);
+	cin>>a;
+	int b=0,e=a.size()-1;
+	int ret=fun(b,e);
+	pr("Case %d: %d\n",++te,a.size()-ret); 
+//	cout<<a.size()-ret<<endl;
+}
 }
 

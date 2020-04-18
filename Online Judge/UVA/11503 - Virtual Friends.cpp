@@ -73,48 +73,55 @@ ll BM( ll a , ll b , ll m )
 #define segment_tree int l=(n*2),r=(n*2)+1,mid=(l+r)/2
 #define Mx 100005
 #define mx 10005
-
+int par[Mx];
+int find(int r){
+	if(par[r]==r)return r;
+	par[r]=find(par[r]);
+	return par[r];
+}
 int main()
 {
 //	FILE
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    map<string,int>mp;
-		 mp["January"]=1;
-		 mp["February"]=2;
-		 mp["March"]=3;
-		 mp["April"]=4;
-		 mp["May"]=5;
-		 mp["June"]=6; 
-		 mp["July"]=7;
-		 mp["August"]=8;
-		 mp["September"]=9;
-		 mp["October"]=10;
-		 mp["November"]=11;
-		 mp["December"]=12;
-	TEST
+    TEST
     while(test--){
-    	
-    	string m1,m2;
-    	char c1,c2;
-    	int d1,y1,d2,y2;
-    	cin>>m1>>d1>>c1>>y1;
-    	cin>>m2>>d2>>c2>>y2;
-    	if(mp[m1]>2){
-    		y1++;
+    	int m;
+    	cin>>m;
+    	for(int i=1;i<Mx;i++){
+    		par[i]=i;
 		}
-		if(mp[m2]<2){
-			y2--;
+		map<string,int>mp;
+		map<int,int>v;
+		int cnt=0;
+    	while(m--){
+    		string a,b;
+    		cin>>a>>b;
+    		if(mp[a]==0){
+    			cnt++;
+    			mp[a]=cnt;
+			}
+				if(mp[b]==0){
+    			cnt++;
+    			mp[b]=cnt;
+			}
+			int u=find(mp[a]);
+			int v=find(mp[b]);
+			if(u!=v){
+				par[u]=v;
+			}
+			int c=0;
+//			cout<<k2<<endl;
+			for(int i=1;i<=cnt;i++){
+			par[i]=find(i);	
+			}
+			int tmp=par[cnt];
+			for(int i=1;i<=cnt;i++){
+			if(par[i]==tmp)c++;
+			}
+			cout<<c<<endl;
 		}
-		else if(mp[m2]==2){
-			if(d2!=29)y2--;
-		}
-		int cnt=y2/4-(y1-1)/4;
-		cnt-=y2/100-(y1-1)/100;
-		cnt+=y2/400-(y1-1)/400;
-			cout<<"Case "<<++te<<": "<<cnt<<endl;
-
 	}
 }
 

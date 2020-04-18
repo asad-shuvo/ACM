@@ -73,48 +73,36 @@ ll BM( ll a , ll b , ll m )
 #define segment_tree int l=(n*2),r=(n*2)+1,mid=(l+r)/2
 #define Mx 100005
 #define mx 10005
-
+int sum1[1000000];
+int sum0[1000000];
 int main()
 {
 //	FILE
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    map<string,int>mp;
-		 mp["January"]=1;
-		 mp["February"]=2;
-		 mp["March"]=3;
-		 mp["April"]=4;
-		 mp["May"]=5;
-		 mp["June"]=6; 
-		 mp["July"]=7;
-		 mp["August"]=8;
-		 mp["September"]=9;
-		 mp["October"]=10;
-		 mp["November"]=11;
-		 mp["December"]=12;
-	TEST
-    while(test--){
-    	
-    	string m1,m2;
-    	char c1,c2;
-    	int d1,y1,d2,y2;
-    	cin>>m1>>d1>>c1>>y1;
-    	cin>>m2>>d2>>c2>>y2;
-    	if(mp[m1]>2){
-    		y1++;
+    string s;
+    int te=0;
+    while(cin>>s){
+    	int q;
+    		cout<<"Case "<<++te<<":"<<endl;
+		cin>>q;
+    	while(q--){
+		
+    	int a,b;
+    	cin>>a>>b;
+    	if(a>b)swap(a,b);
+    	int f=0;
+    	for(int i=a;i<b;i++){
+    		if(s[i]!=s[i+1]){
+    			f=1;
+    			break;
+			}
 		}
-		if(mp[m2]<2){
-			y2--;
+		
+		if(f==0)cout<<"Yes"<<endl;
+			else cout<<"No"<<endl;
 		}
-		else if(mp[m2]==2){
-			if(d2!=29)y2--;
-		}
-		int cnt=y2/4-(y1-1)/4;
-		cnt-=y2/100-(y1-1)/100;
-		cnt+=y2/400-(y1-1)/400;
-			cout<<"Case "<<++te<<": "<<cnt<<endl;
-
 	}
 }
 

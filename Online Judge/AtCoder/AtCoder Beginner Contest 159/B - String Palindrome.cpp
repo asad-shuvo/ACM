@@ -76,45 +76,31 @@ ll BM( ll a , ll b , ll m )
 
 int main()
 {
-//	FILE
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    map<string,int>mp;
-		 mp["January"]=1;
-		 mp["February"]=2;
-		 mp["March"]=3;
-		 mp["April"]=4;
-		 mp["May"]=5;
-		 mp["June"]=6; 
-		 mp["July"]=7;
-		 mp["August"]=8;
-		 mp["September"]=9;
-		 mp["October"]=10;
-		 mp["November"]=11;
-		 mp["December"]=12;
-	TEST
-    while(test--){
-    	
-    	string m1,m2;
-    	char c1,c2;
-    	int d1,y1,d2,y2;
-    	cin>>m1>>d1>>c1>>y1;
-    	cin>>m2>>d2>>c2>>y2;
-    	if(mp[m1]>2){
-    		y1++;
-		}
-		if(mp[m2]<2){
-			y2--;
-		}
-		else if(mp[m2]==2){
-			if(d2!=29)y2--;
-		}
-		int cnt=y2/4-(y1-1)/4;
-		cnt-=y2/100-(y1-1)/100;
-		cnt+=y2/400-(y1-1)/400;
-			cout<<"Case "<<++te<<": "<<cnt<<endl;
-
+    string a;
+    cin>>a;
+    string l=a;
+     reverse(l.begin(),l.end());
+     int f=0;
+     if(l!=a)f=1;
+    string b="";
+    int k=(a.size()-1)/2;
+    for(int i=0;i<k;i++)b+=a[i];
+    string c=b;
+    reverse(c.begin(),c.end());
+    
+	if(c!=b)f=1;
+	k=(a.size()+3)/2;
+	string d="";
+	for(int i=k-1;i<a.size();i++){
+		d+=a[i];
 	}
-}
+	string z=d;
+	 reverse(z.begin(),z.end());
+	 if(z!=d)f=1;
+	 if(f==0)cout<<"Yes"<<endl;
+	 else cout<<"No"<<endl;
+	 }
 

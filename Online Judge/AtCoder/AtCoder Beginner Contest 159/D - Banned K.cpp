@@ -76,45 +76,40 @@ ll BM( ll a , ll b , ll m )
 
 int main()
 {
-//	FILE
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);///Beware of use it, if u use it dont use scanf or printf
-    map<string,int>mp;
-		 mp["January"]=1;
-		 mp["February"]=2;
-		 mp["March"]=3;
-		 mp["April"]=4;
-		 mp["May"]=5;
-		 mp["June"]=6; 
-		 mp["July"]=7;
-		 mp["August"]=8;
-		 mp["September"]=9;
-		 mp["October"]=10;
-		 mp["November"]=11;
-		 mp["December"]=12;
-	TEST
-    while(test--){
-    	
-    	string m1,m2;
-    	char c1,c2;
-    	int d1,y1,d2,y2;
-    	cin>>m1>>d1>>c1>>y1;
-    	cin>>m2>>d2>>c2>>y2;
-    	if(mp[m1]>2){
-    		y1++;
+    ll n;
+    cin>>n;
+    map<ll,ll>arr;
+    ll a[n+1];
+    fori(n){
+    	ll x;
+    	cin>>x;
+    	a[i]=x;
+    	arr[x]++;
+	}
+	ll sum=0;
+	for(auto it:arr){
+		if(it.second>=2){
+			ll p=it.second;
+			if(p>2){
+				sum+=(p*(p-1))/2;
+			}
+			else sum+=1;
 		}
-		if(mp[m2]<2){
-			y2--;
-		}
-		else if(mp[m2]==2){
-			if(d2!=29)y2--;
-		}
-		int cnt=y2/4-(y1-1)/4;
-		cnt-=y2/100-(y1-1)/100;
-		cnt+=y2/400-(y1-1)/400;
-			cout<<"Case "<<++te<<": "<<cnt<<endl;
-
+	}
+	fori(n){
+		ll x=arr[a[i]];
+		x--;
+		if(x>=1)cout<<sum-x<<endl;
+		else cout<<sum<<endl;
+//		ll t=x-1;
+//		ll s1=(x*(x-1))/2;
+//		ll s2=(t*(t-1))/2;
+//		ll xx=sum;
+//		xx-=s1;
+//		cout<<xx+s2<<endl;
 	}
 }
 
